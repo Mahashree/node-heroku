@@ -3,18 +3,25 @@
   "version": "0.0.1",
   "description": "deploying node js to heroku platform",
   "main": "index.js",
-  
-  "author": {
-  "name": "Mahashree",
-  "email": "mahashreeraja7@gmail.com"
+  "author": "Mahashree <mahashreeraja7@gmail.com>",
+  "engines": {
+    "node": "8.2.1",
+    "npm": "5.3.0"
   },
-  "engines":{
-  "node":"8.2.1",
-  "npm":"5.3.0"
+  "dependencies": {
+    "express": "4.15.3",
+    "body-parser": "1.17.2"
   },
-  "dependencies":{
-  "express": "4.15.3",
-  "body-parser": "1.17.2"
-  }
- 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahashree/node-heroku.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahashree/node-heroku/issues"
+  },
+  "homepage": "https://github.com/Mahashree/node-heroku#readme"
 }
