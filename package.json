@@ -2,7 +2,7 @@
   "name": "node-heroku",
   "version": "0.0.1",
   "description": "deploying node js to heroku platform",
-  "main": "index.html",
+  "main": "index.js",
   
   "author": {
   "name": "Mahashree",
