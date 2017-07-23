@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "deploying node js to heroku platform",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   
   "author": {
   "name": "Mahashree",
@@ -19,6 +16,5 @@
   "express": "4.15.3",
   "body-parser": "1.17.2"
   }
-  "license": "ISC"
-  
+ 
 }
