@@ -1,6 +1,6 @@
 var requireDirectory = require('require-directory');
 var directory =__dirname;
-console.log(directory);
+console.log(typeof(directory));
 //var api = requireDirectory('./api/index.js');
 //console.log(api);
 //var api =apiPath.normalize("..//api");
