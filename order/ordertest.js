@@ -1,5 +1,5 @@
 var requireDirectory = require('require-directory');
-var apiPath = requireDirectory(module,'./api');
+var apiPath = require('./api');
 var api =apiPath.normalize("..//api");
 //var api = require('./api');
 api.save.chkfn();
