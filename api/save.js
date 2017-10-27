@@ -1,4 +1,4 @@
-exports.chkfn = function(){
+exports.getMsg = function(){
  //var requireDir  = require('require-dir');
  /*var fs = require('fs');
  console.log(fs.readdirSync('api',{}));

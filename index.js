@@ -6,5 +6,5 @@
 var requireDir = require('./api/save.js');
 console.log("Step1");
 console.log(requireDir);
-console.log(requireDir.save.chkfn());
+console.log(requireDir.save.getMsg());
 console.log("Step2");
