@@ -14,8 +14,8 @@ console.log("Step2");*/
 
 
 var modules = require('./test.js');
-var save = modules.save.getMsg();
-var Delete = modules.Delete.Delete();
+ modules.save1.getMsg();
+ modules.delete1.Delete();
 
 
 console.log("<-------Step------------->");

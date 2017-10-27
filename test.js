@@ -1,6 +1,6 @@
 module.exports = {
-   save : require('./save.js'),
-   Delete : require('./Deletejsfile.js'),
+   save1 : require('./api/save.js'),
+   delete1 : require('./api/Deletejsfile.js'),
    
 }
 
