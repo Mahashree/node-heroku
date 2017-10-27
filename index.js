@@ -1,5 +1,5 @@
 var requireDirectory = require('require-directory');
 var api = requireDirectory(module,'./api');
-
-//chkval.exports = require('./api')();
+//var requireDir = require('require-dir');
+exports.route = require('require-dir')('./api');
 console.log(api.save.chkfn());
