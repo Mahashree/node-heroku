@@ -9,5 +9,5 @@ exports.getMsg = function(){
  //console.log(routedel);
  //console.log("Step2");
  //console.log(Deletejsfile.Delete());
-console.log("inside api save js chkfn ");
+console.log("inside api getMsg Function ");
 }
