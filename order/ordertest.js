@@ -1,4 +1,7 @@
-var requireDir = require('require-dir');
-
-api.save.chkfn();
-api.Deletejsfile.Delete();
+ 
+exports.getOrder = function(){
+	 
+	console.log("inside order test ");
+	 
+	
+}

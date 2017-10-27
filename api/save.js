@@ -1,6 +1,8 @@
 exports.getMsg = function(){
-	console.log("Begin inside api getMsg Function1 ");
+	var modules = require('./test.js');
 	
+	console.log("inside api getMsg Function1 ");
+	modules.order1.getOrder();
  //var requireDir  = require('require-dir');
  /*var fs = require('fs');
  console.log(fs.readdirSync('api',{}));
