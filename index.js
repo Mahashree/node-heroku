@@ -3,8 +3,8 @@
 var requireDir = require('require-dir');
 
 //exports.route = require('require-dir')('./api');
-//var requireDir = require('./api');
+var requireDir1 = requireDir('./api');
 console.log("Step1");
-console.log(requireDir);
-console.log(requireDir.save.getMsg());
+console.log(requireDir1);
+console.log(requireDir1.save.getMsg());
 console.log("Step2");
