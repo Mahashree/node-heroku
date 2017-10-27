@@ -1,4 +1,5 @@
-var requireDir = require('require-dir');
-var order = requireDir('./order');
-console.log(order);
-console.log(order.ordertest);
+var requireDirectory = require('require-directory');
+var api = requireDirectory(module,'./api');
+
+//chkval.exports = require('./api')();
+console.log(api.save);
