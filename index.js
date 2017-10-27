@@ -18,6 +18,6 @@ var modules = require('./test.js');
  modules.delete1.Delete();
 
 
-console.log("<-------Step------------->");
-console.log(save);
-console.log(Delete);
+console.log("<-------index js------------->");
+//console.log(save);
+//console.log(Delete);
