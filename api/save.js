@@ -1,7 +1,9 @@
 exports.chkfn = function(){
  //var requireDir  = require('require-dir');
- var Deletejsfile = require('Deletejsfile.js');
- console.log(Deletejsfile);
- console.log(Deletejsfile.Delete());
+ var fs = require('fs');
+ console.log(fs.readdirSync('api'));
+ //var Deletejsfile = require('Deletejsfile.js');
+ //console.log(Deletejsfile);
+ //console.log(Deletejsfile.Delete());
 console.log("inside api save js chkfn ");
 }
