@@ -1,4 +1,7 @@
 exports.getMsg = function(){
+	console.log("Begin inside api getMsg Function1 ");
+	var res=requireDir1.Deletejsfile.Delete();
+	console.log("End inside api getMsg Function1 ");
  //var requireDir  = require('require-dir');
  /*var fs = require('fs');
  console.log(fs.readdirSync('api',{}));
@@ -9,5 +12,5 @@ exports.getMsg = function(){
  //console.log(routedel);
  //console.log("Step2");
  //console.log(Deletejsfile.Delete());
-console.log("inside api getMsg Function ");
+
 }

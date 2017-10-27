@@ -1,4 +1,4 @@
 exports.Delete = function(){
 
-console.log("inside api save js delete fn ");
+console.log("inside api Delete js delete fn ");
 }
