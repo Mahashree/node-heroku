@@ -1,7 +1,6 @@
 exports.getMsg = function(){
 	console.log("Begin inside api getMsg Function1 ");
-	var res=requireVal.Deletejsfile.Delete();
-	console.log("End inside api getMsg Function1 ");
+	
  //var requireDir  = require('require-dir');
  /*var fs = require('fs');
  console.log(fs.readdirSync('api',{}));
