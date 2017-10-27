@@ -1,7 +1,10 @@
-var requireDirectory = require('require-directory');
-exports.api1 = requireDirectory(module,'./api');
+//var requireDirectory = require('require-directory');
+//var api1 = requireDirectory(module,'./api');
 //var requireDir = require('require-dir');
 
 //exports.route = require('require-dir')('./api');
-console.log(api1);
-console.log(api1.save.chkfn());
+var requireDir = require('./api/save.js');
+console.log("Step1");
+console.log(requireDir);
+console.log(requireDir.save.chkfn());
+console.log("Step2");
