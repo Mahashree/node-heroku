@@ -8,26 +8,18 @@
     "start": "node index.js"
   },
   "author": "Adam Jodlowski",
-  "engineStrict": true,
-  "engines": {
-    "node": "8.7.0",
-    "npm": "5.4.2"
-  },
   "license": "ISC",
   "dependencies": {
-	"require-dir":"0.3.2",
-	"require-directory":"^2.1.1" ,
-    "applicationinsights": "^1.0.0",
     "body-parser": "^1.15.2",
     "debug-log": "^1.0.0",
     "express": "^4.14.0",
     "request": "^2.74.0",
 	"properties-reader": "^0.0.6"	,
-"setimmediate": "^1.0.5",
-
 	"express-session": "^1.7.6",
 	"redis":"2.8.0",
 	"redis-server":"1.1.0",
-	"redis-connection":"5.4.0"
+	"redis-connection":"5.4.0",
+	"require-directory":"^2.1.1" 
+
   }
 }
