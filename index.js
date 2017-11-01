@@ -474,7 +474,7 @@ if(event.postback){
 		
 		getRedisInfo().then(users => { //PMS
 				if(users.smartClick ==="true"){
-					sendMessage(event.sender.id, {text: modules.getMessages.getMessages()"Please wait. Your request is in progress............"});
+					sendMessage(event.sender.id, {text: modules.getMessages.getMessages(msg.request.status)});
 				}
 				modules.submitOrderfn.submitOrderfn(event,users);
 				client.hmset(event.sender.id, {
