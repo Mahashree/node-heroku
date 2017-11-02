@@ -9,31 +9,22 @@ var redis = require("redis");
 var redisClient = require('redis-connection')();
 var redisServer = require('redis-server');
 var app = express();
-
-var modules = require('./module.js');
-
-var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
-
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('fbbot-tr-properties.properties');
-var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
-
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.listen((process.env.PORT || 5000));
+app.listen((process.env.PORT || 3000));
 app.use(session({secret: 'ssshhhhh'}));
 
-
-
+var PropertiesReader = require('properties-reader');
 var sess;
 
 // Server frontpage
 app.get('/', function (req, res) {
-		
+	
+	
 	sess = req.session;
 	sess.test="false";
     res.send('This is TestBot Server new');
+	
 });
  
 // Facebook Webhook
@@ -46,13 +37,21 @@ app.get('/webhook', function (req, res) {
 		res.send(req.query['hub.challenge']);
     }
 });
+ //var modules =require('./api/index.js');
+var modules = require('module1.js');
+console.log("modules0");
+
+//var properties = PropertiesReader('fbbot-tr-properties.properties');
+//var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
+
+var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
+console.log("modules1");
 
 // handler receiving messages
-app.post('/webhook', function (req, res) {
-	
+app.post('/webhook', function (req, res) {	
 		sess = req.session;
 			
-		
+		console.log("Inside webhook");
     var events = req.body.entry[0].messaging;	 
 
     for (i = 0; i < events.length; i++) {
@@ -61,6 +60,7 @@ app.post('/webhook', function (req, res) {
 		var redisInfo;
 				
 		function getRedisInfo () {
+			console.log("Inside redis Info");
 		  return new Promise((resolve, reject) => {
 			client.hgetall(event.sender.id, function(err, obj) {
 					redisData = obj;
@@ -77,7 +77,7 @@ app.post('/webhook', function (req, res) {
 
 // Usage:
 getRedisInfo().then(users => {
-	
+	console.log("Inside event ");
 	if(event.message && event.message.text) {
 		
 	var	emojiCheckInt=parseInt(redisData.emojipatternchk);
@@ -474,7 +474,7 @@ if(event.postback){
 		
 		getRedisInfo().then(users => { //PMS
 				if(users.smartClick ==="true"){
-					sendMessage(event.sender.id, {text: modules.getMessages.getMessages(msg.request.status)});
+					sendMessage(event.sender.id, {text: modules.getMessages.getMessages(msg.request.Status)});
 				}
 				modules.submitOrderfn.submitOrderfn(event,users);
 				client.hmset(event.sender.id, {
