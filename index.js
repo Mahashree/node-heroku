@@ -40,7 +40,7 @@ app.get('/webhook', function (req, res) {
  //var modules =require('./api/index.js');
 //var modules = require('module1.js');
 console.log("modules0");
-var modules =require('./getRepoInfo/index.js');
+var modules =require('./getRepoInfo');
 //var properties = PropertiesReader('fbbot-tr-properties.properties');
 //var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
 
