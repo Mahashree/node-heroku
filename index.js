@@ -37,10 +37,12 @@ app.get('/webhook', function (req, res) {
 		res.send(req.query['hub.challenge']);
     }
 });
- //var modules =require('./api/index.js');
-//var modules = require('module1.js');
 console.log("modules0");
-//var modules =require('./getRepoInfo');
+ //var modules =require('./api/index.js');
+var modules = require('./module1.js');
+
+//var modules =require('./getRepoInfo/index.js');
+console.log(modules);
 //var properties = PropertiesReader('fbbot-tr-properties.properties');
 //var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
 
