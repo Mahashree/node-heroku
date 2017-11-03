@@ -38,13 +38,13 @@ app.get('/webhook', function (req, res) {
     }
 });
  //var modules =require('./api/index.js');
-var modules = require('module1.js');
+//var modules = require('module1.js');
 console.log("modules0");
-
+var modules =require('./getRepoInfo/index.js');
 //var properties = PropertiesReader('fbbot-tr-properties.properties');
 //var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
 
-var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
+//var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
 console.log("modules1");
 
 // handler receiving messages
