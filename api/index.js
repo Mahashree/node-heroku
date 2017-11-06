@@ -1,4 +1,4 @@
-console.log("Inside API");
+console.log("Inside API");/*
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('facebookbot-tr.properties');
 
@@ -109,4 +109,4 @@ exports.prepareWSDetails= function(type, data) {
         }
     };
     return options;
-}
+}*/
