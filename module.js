@@ -1,8 +1,10 @@
 console.log("Inside module.js");
+
+var apipath = require('./api');
 module.exports = {
 	
 	//api
-	   api: require('./api')/*,
+	   api:apipath /*,
 	
 	//getMessages
 		getMessages: require('./getMessages'),
