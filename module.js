@@ -1,6 +1,9 @@
 console.log("Inside module.js");
 
-var apiPath = require('./api/index.js');
+setTimeout(() => {
+  var apiPath = require('./api/index.js');
+}, 1000);
+
 
 console.log("apiPath");
 console.log(apiPath);
