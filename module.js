@@ -1,7 +1,7 @@
 module.exports = {
 	
 	//api
-	   api: require('./api'),
+	   api: require('./api')/*,
 	
 	//getMessages
 		getMessages: require('./getMessages'),
@@ -49,7 +49,7 @@ module.exports = {
 		validateLineNrQtyForModifycart : require('./validation/validateLineNrQtyForModifycart.js'),
 		validateRepOrders : require('./validation/validateRepOrders.js'),
 	
-
+*/
 
    
 }
