@@ -1,8 +1,9 @@
 console.log("Inside module.js");
+var requireDirectory = require('require-directory');
+var apiPath = requireDirectory(module, './routes');
 
-setTimeout(() => {
-  var apiPath = require('./api/index.js');
-}, 100);
+  //var apiPath = require('./api/index.js');
+
 
 
 console.log("apiPath");
