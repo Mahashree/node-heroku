@@ -1,8 +1,9 @@
 console.log("Inside module.js");
 
-var apipath = require('./../api/index.js');
+//var apipath = require('./../api/index.js');
+var apiPath = "Welcome to api";
 console.log("apiPath");
-console.log(apipath);
+console.log(apiPath);
 module.exports.pathDetails = {
 	
 	//api
