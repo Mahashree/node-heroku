@@ -1,7 +1,9 @@
 console.log("Inside module.js");
 
 var apipath = require('./api');
-module.exports = {
+console.log("apiPath");
+console.log(apipath);
+module.exports.pathDetails = {
 	
 	//api
 	   api:apipath /*,

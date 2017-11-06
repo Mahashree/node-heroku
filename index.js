@@ -37,9 +37,13 @@ app.get('/webhook', function (req, res) {
 });
 
 console.log("Step 1");
-var modules = require('./module.js');
-console.log(modules.api);
+var dataFiles = require('./module.js');
+var modules = dataFiles.pathDetails;
+console.log("modules");
+console.log(modules);
 console.log("Step 2");
+console.log(modules.api);
+console.log("Step 3");
 var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
 
 //var PropertiesReader = require('properties-reader');
