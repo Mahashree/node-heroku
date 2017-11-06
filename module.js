@@ -1,13 +1,13 @@
 module.exports = {
 	
 	//api
-	   api : require('./api/index.js'),
+	   api: require('./api'),
 	
 	//getMessages
-		getMessages: require('./getMessages/index.js'),
+		getMessages: require('./getMessages'),
 
 	//getRepInfo
-		getRepInfo: require('./getRepInfo/index.js'),
+		getRepInfo: require('./getRepInfo'),
 		
 	//login
 		fbLogin: require('./login/fbLogin.js'),
