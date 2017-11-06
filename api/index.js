@@ -34,14 +34,22 @@ exports.prepareWSDetails= function(type, data) {
         case "GETPENDINGITMS":
             path = properties.get('fbbot.ws.getpendingitms.tr.path');
             break;
-        case "LOGIN":
-            path = properties.get('fbbot.ws.login.tr.path');
-            console.log("Inside login details >>>" + path);
-            break;
         case "VERIFYFBLOGIN":
-            path = properties.get('fbbot.ws.verifylogin.tr.path');
-            console.log("Inside Verify fblogin details >>>" + path);
-            break;
+            path = properties.get('fbbot.ws.verifylogin.tr.path');            
+            var options = {
+
+				host: properties.get('fbbot.fbgraph.host'),
+				port: properties.get('fbbot.fbgraph.port'),
+				path: path,
+				method:properties.get('fbbot.fbgraph.method'),,
+				family: 4,
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8',
+					'Content-Length': data.length
+				}
+			};
+			return options;
+			
         case "PRODUCTIMAGE":
             path = properties.get('fbbot.ws.productimage.tr.path');
             break;
