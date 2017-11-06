@@ -1,7 +1,7 @@
 console.log("Inside API");
-//var PropertiesReader = require('properties-reader');
-var requireDirectory = require('require-directory');
-var fbbotProperties = requireDirectory(module,'./../configFiles/facebookbot-tr.properties');
+var PropertiesReader = require('properties-reader');
+
+var fbbotProperties = require('./../configFiles/facebookbot-tr.properties');
 console.log(fbbotProperties);
 //properties = PropertiesReader('facebookbot-tr.properties');
 //console.log(properties);
