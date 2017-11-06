@@ -2,7 +2,7 @@ console.log("Inside module.js");
 
 setTimeout(() => {
   var apiPath = require('./api/index.js');
-}, 1000);
+}, 100);
 
 
 console.log("apiPath");
