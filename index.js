@@ -38,8 +38,8 @@ app.get('/webhook', function (req, res) {
 
 console.log("Step 1");
 var PropertiesReader = require('properties-reader');
-module.exports.properties = PropertiesReader('facebookbot-tr.properties');
-module.exports.errProperties = PropertiesReader('facebookbot-tr-err.properties');
+//properties = PropertiesReader('facebookbot-tr.properties');
+errProperties = PropertiesReader('facebookbot-tr-err.properties');
 
 var dataFiles = require('./module.js');
 var modules = dataFiles.pathDetails;
@@ -49,11 +49,6 @@ console.log("Step 2");
 console.log(modules.api);
 console.log("Step 3");
 var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
-
-
-
-
-
 
 
 // handler receiving messages
