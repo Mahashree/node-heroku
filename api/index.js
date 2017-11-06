@@ -1,6 +1,8 @@
 console.log("Inside API");
+var properties = require('./../index.js');
+
 console.log("properties");
-console.log(properties);
+console.log(properties.properties);
 
 /*
 exports.wshost = properties.get('fbbot.ws.tr.host');
