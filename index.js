@@ -1,4 +1,4 @@
-
+import module from './module.js';
 var express = require('express');
 var bodyParser = require('body-parser');
 var http = require('http');
@@ -14,17 +14,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 3000));
 app.use(session({secret: 'ssshhhhh'}));
-
-
-var modules = require('./module.js');
-
-var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
-
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('fbbot-tr-properties.properties');
-var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
-
-
 
 var sess;
 
@@ -46,6 +35,20 @@ app.get('/webhook', function (req, res) {
 		res.send(req.query['hub.challenge']);
     }
 });
+
+
+
+var modules = require('./module.js');
+console.log(modules);
+var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
+
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('fbbot-tr-properties.properties');
+var errProperties = PropertiesReader('fbbot-tr-errProperties.properties');
+
+
+
+
 
 // handler receiving messages
 app.post('/webhook', function (req, res) {
