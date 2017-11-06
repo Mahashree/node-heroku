@@ -1,3 +1,4 @@
+console.log("Inside module.js");
 module.exports = {
 	
 	//api
