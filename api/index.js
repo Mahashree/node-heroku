@@ -1,8 +1,9 @@
 console.log("Inside API");
-var PropertiesReader = require('./../properties-reader');
-console.log(PropertiesReader);
-properties = PropertiesReader('facebookbot-tr.properties');
-console.log(properties);
+var PropertiesReader = require('properties-reader');
+var fbbotProperties = require('./facebookbot-tr.properties');
+console.log(fbbotProperties);
+//properties = PropertiesReader('facebookbot-tr.properties');
+//console.log(properties);
 /*
 exports.wshost = properties.get('fbbot.ws.tr.host');
 exports.wsport = properties.get('fbbot.ws.tr.port');
