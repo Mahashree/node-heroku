@@ -23,7 +23,7 @@ exports.redisAuth_pass=properties.get('fbbot.redis.tr.redisAuth_pass');
 exports.redisServername =properties.get('fbbot.redis.tr.redisServername');
 
 */
-
+console.log("inside api index JS");
 exports.prepareWSDetails= function(type, data) {
 	
 	
