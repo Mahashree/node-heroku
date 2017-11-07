@@ -1,0 +1,9 @@
+{
+  "name": "api",  
+  "main": "index.js",
+ 
+  "dependencies": {    
+	"properties-reader": "^0.0.6"
+
+  }
+}
