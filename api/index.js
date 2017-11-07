@@ -1,4 +1,4 @@
-console.log("Inside API");
+
 //var path = require('path');
 //var updater = require( path.resolve( __dirname, "./facebookbot-tr.properties" ) ); 
 //console.log(path);
@@ -21,9 +21,21 @@ exports.redisAuth_pass=properties.get('fbbot.redis.tr.redisAuth_pass');
 exports.redisServername =properties.get('fbbot.redis.tr.redisServername');
 
 
-
+*/
 exports.prepareWSDetails= function(type, data) {
+	var PropertiesReader = require('properties-reader');
+	var properties = PropertiesReader('./api/facebookbot-tr.properties'); 
+	exports.wshost = properties.get('fbbot.ws.tr.host');
+	exports.wsport = properties.get('fbbot.ws.tr.port');
+	exports.wsmethodType = properties.get('fbbot.ws.tr.methodtype');
+	exports.mrktCd = properties.get('fbbot.common.tr.mrktCd');
+	exports.langCd = properties.get('fbbot.common.tr.langCd');
+	exports.devKey = properties.get('fbbot.ws.tr.dev.devKey');
 
+	exports.redisPort =properties.get('fbbot.redis.tr.redisPort');
+	exports.redisUrl=properties.get('fbbot.redis.tr.redisUrl');
+	exports.redisAuth_pass=properties.get('fbbot.redis.tr.redisAuth_pass');
+	exports.redisServername =properties.get('fbbot.redis.tr.redisServername');
     var path = "";
 
     switch (type) {
