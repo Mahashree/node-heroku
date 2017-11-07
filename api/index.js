@@ -7,6 +7,7 @@
 //var properties = PropertiesReader('./api/facebookbot-tr.properties'); 
 
 console.log("properties");
+/*
 console.log(properties);
 
 exports.wshost = properties.get('fbbot.ws.tr.host');
@@ -118,3 +119,4 @@ exports.prepareWSDetails= function(type, data) {
     };
     return options;
 }
+*/
