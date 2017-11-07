@@ -5,8 +5,8 @@ console.log("Inside module.js");
 //var updater = require( path.resolve( __dirname, "./login/fbLogin.js" ) ); 
 //console.log(api);
 var requireDirectory = require('require-directory');
-//var api = requireDirectory(module,'./api/index.js');
-//console.log(api);
+var api = requireDirectory(module,'./api/index.js');
+console.log(api);
 
 module.exports = {
 	
