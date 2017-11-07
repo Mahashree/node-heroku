@@ -8,10 +8,10 @@ console.log(properties);
 //var api = requireDirectory(module,'./api/index.js');
 //console.log(api);
 
-//module.exports = {
+module.exports = {
 	
 	//api
-	   //api:require('./api/index.js') 
+	   api:require('./api/index.js') 
 	   /*,
 	
 	//getMessages
