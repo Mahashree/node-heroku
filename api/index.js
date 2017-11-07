@@ -1,7 +1,7 @@
 console.log("Inside API");
 var path = require('path');
-var updater = require( path.resolve( __dirname, "./facebookbot-tr.properties" ) ); 
-console.log(updater);
+//var updater = require( path.resolve( __dirname, "./facebookbot-tr.properties" ) ); 
+console.log(path);
 //var PropertiesReader = require('properties-reader');
 //console.log(PropertiesReader);
 //var properties = PropertiesReader('./api/facebookbot-tr.properties'); 
