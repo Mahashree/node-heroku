@@ -4,14 +4,14 @@ console.log("Inside module.js");
 //var path = require( "path" );
 //var updater = require( path.resolve( __dirname, "./getRepInfo/index.js" ) ); 
 //console.log(updater);
-//var requireDirectory = require('require-directory');
+var requireDirectory = require('require-directory');
 //var api = requireDirectory(module,'./api/index.js');
 //console.log(api);
 
 module.exports = {
 	
 	//api
-	   api:require('./api/index.js') 
+	   api:requireDirectory(module,'./api/index.js') 
 	   /*,
 	
 	//getMessages
