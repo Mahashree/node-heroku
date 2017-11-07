@@ -4,7 +4,7 @@ var requireDirectory = require('require-directory');
 module.exports.pathDetails = {
 	
 	//api
-	   api:requireDirectory(module,'./api') /*,
+	   api:requireDirectory(module,'./api/index.js') /*,
 	
 	//getMessages
 		getMessages: require('./getMessages'),
