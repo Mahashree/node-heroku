@@ -1,5 +1,5 @@
 console.log("Inside module.js");
-console.log(properties);
+
 //var api = require('./api/index.js');
 //var path = require( "path" );
 //var updater = require( path.resolve( __dirname, "./getRepInfo/index.js" ) ); 
