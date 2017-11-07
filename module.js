@@ -1,6 +1,7 @@
 console.log("Inside module.js");
 var requireDirectory = require('require-directory');
-//console.log(requireDirectory(module,'./api'));
+
+console.log(requireDirectory(module,'./api/index.js'));
 module.exports = {
 	
 	//api
