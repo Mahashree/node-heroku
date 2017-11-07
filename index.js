@@ -38,7 +38,7 @@ app.get('/webhook', function (req, res) {
 
 console.log("Step 1");
 var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./Config/facebookbot-tr.properties'); 
+var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
 console.log(properties);
 var modules = require('./module.js');
 console.log("modules");
