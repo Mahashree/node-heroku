@@ -1,5 +1,5 @@
 console.log("Inside module.js");
-
+console.log(require('./api/index.js'));
 
 module.exports = {
 	
