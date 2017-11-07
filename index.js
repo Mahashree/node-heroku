@@ -15,8 +15,15 @@ app.use(bodyParser.json());
 app.listen((process.env.PORT || 3000));
 app.use(session({secret: 'ssshhhhh'}));
 
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
 var sess;
-
+var modules = require('./module.js');
+console.log("modules");
+console.log(modules);
+console.log("Step 2");
+console.log(modules.api);
+console.log("Step 3");
 // Server frontpage
 app.get('/', function (req, res) {
 		
@@ -37,15 +44,9 @@ app.get('/webhook', function (req, res) {
 });
 
 console.log("Step 1");
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
 
-var modules = require('./module.js');
-console.log("modules");
-console.log(modules);
-console.log("Step 2");
-console.log(modules.api);
-console.log("Step 3");
+
+
 var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
 
 
