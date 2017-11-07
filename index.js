@@ -39,8 +39,7 @@ app.get('/webhook', function (req, res) {
 console.log("Step 1");
 
 
-var dataFiles = require('./module.js');
-var modules = dataFiles.pathDetails;
+var modules = require('./module.js');
 console.log("modules");
 console.log(modules);
 console.log("Step 2");
