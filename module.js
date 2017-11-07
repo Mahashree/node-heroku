@@ -1,5 +1,7 @@
 console.log("Inside module.js");
 //var api = require('./api/index.js');
+var path = require( "path" );
+console.log(path);
 var requireDirectory = require('require-directory');
 var api = requireDirectory(module,'./api/index.js');
 console.log(api);
