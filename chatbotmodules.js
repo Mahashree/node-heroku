@@ -11,7 +11,7 @@ console.log("Inside module.js");
 module.exports = {
 	
 	//api
-	   api:require('./api/index.js') 
+	   api1:require('./apiws/index.js') 
 	   /*,
 	
 	//getMessages
