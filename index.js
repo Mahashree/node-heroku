@@ -37,9 +37,7 @@ app.get('/webhook', function (req, res) {
 });
 
 console.log("Step 1");
-var PropertiesReader = require('properties-reader');
-//properties = PropertiesReader('facebookbot-tr.properties');
-errProperties = PropertiesReader('facebookbot-tr-err.properties');
+
 
 var dataFiles = require('./module.js');
 var modules = dataFiles.pathDetails;
