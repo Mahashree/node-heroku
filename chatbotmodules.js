@@ -2,12 +2,12 @@ console.log("Inside chatbot module.js1");
 
 module.exports = {
 		
-	   api: require('./apiws/api.js'),
+		api: require('./apiws/api.js')
 	   
-	
+	/*,
 	//getMessages
 		getMessages: require('./getMessages/getMessage.js')
-		/*,
+		,
 
 	//getRepInfo
 		getRepInfo: require('./getRepInfo'),
