@@ -1,8 +1,10 @@
 console.log("Inside chatbot module.js1");
 try{
-module.exports = {
+	var ghj=require('./getMessages/getMessage.js');
+	
+/*module.exports = {
 		
-		api: require('./apiws/api.js')
+		api: require('./apiws/api.js'),
 	   
 	
 	//getMessages
@@ -51,11 +53,12 @@ module.exports = {
 		prepareRepOrderList : require('./validation/prepareRepOrderList.js'),
 		validateLineNrQtyForModifycart : require('./validation/validateLineNrQtyForModifycart.js'),
 		validateRepOrders : require('./validation/validateRepOrders.js'),
-	*/
+	
  
 
    
-};}catch(ex){
+};*/
+}catch(ex){
 	
 console.log(ex);
 
