@@ -8,4 +8,3 @@ exports.getMessages = function(event,msgkey){
 	var  msgvalue= getMessagesProperties.get(msgkey);
 	return msgvalue;
 }
-}
