@@ -6,7 +6,7 @@ module.exports = {
 	   
 	
 	//getMessages
-		getMessages: require('./getMessages')
+		getMessages: require('./getMessages/getMessage.js')
 		/*,
 
 	//getRepInfo
