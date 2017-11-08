@@ -1,21 +1,7 @@
 console.log("Inside chatbot module.js1");
 
-//var api = require('./api/index.js');
-//var path = require( "path" );
-//var updater = require( path.resolve( __dirname, "./getRepInfo/index.js" ) ); 
-//console.log(updater );
-//var requireDirectory = require('require-directory');
-//var api = requireDirectory(module,'./api/index.js');
-/*try{
-var api = require('./apiws/api.js');
-}
-catch(ex){
-	console.log(ex);
-}*/
 module.exports = {
-	
-	
-	
+		
 	   api: require('./apiws/api.js')
 	   /*,
 	
