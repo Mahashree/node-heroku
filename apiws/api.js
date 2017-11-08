@@ -2,11 +2,13 @@
 //var path = require('path');
 //var updater = require( path.resolve( __dirname, "./facebookbot-tr.properties" ) ); 
 //console.log(path);
-//var PropertiesReader = require('properties-reader');
-//console.log(PropertiesReader);
-//var properties = PropertiesReader('./api/facebookbot-tr.properties'); 
 
+//console.log(PropertiesReader);
 console.log("inside api index JS");
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('./../config/facebookbot-tr.properties'); 
+
+
 console.log("properties");
 
 console.log(properties);
