@@ -3,11 +3,11 @@ console.log("Inside module.js");
 module.exports = {
 	
 	//api
-	   api:require('./apiws/api.js') 
+	   api:require('./apiws/api.js')
 	   /*,
 	
 	//getMessages
-		getMessages: require('./getMessages'),
+		getMessages: require('./getMessages/getMessage.js'),
 
 	//getRepInfo
 		getRepInfo: require('./getRepInfo'),

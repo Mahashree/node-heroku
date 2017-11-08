@@ -26,10 +26,9 @@ var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
 var sess;
 var modules = require('./chatbotmodules.js');
-
-console.log("modules");
 console.log(modules);
-console.log("Step 3");
+
+console.log("Step 2");
 // Server frontpage
 app.get('/', function (req, res) {
 		
@@ -48,10 +47,6 @@ app.get('/webhook', function (req, res) {
 		res.send(req.query['hub.challenge']);
     }
 });
-
-console.log("Step 1");
-
-
 
 var client = redis.createClient(modules.api.redisPort,api.redisUrl, {auth_pass: modules.api.redisAuth_pass, tls: {servername: modules.api.redisServername}});
 
