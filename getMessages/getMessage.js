@@ -1,7 +1,7 @@
 console.log("Inside getMessages");
 var PropertiesReader = require('properties-reader');
 console.log(PropertiesReader);
-var getMessagesProperties = PropertiesReader('./en_us_Message.properties');
+var getMessagesProperties = PropertiesReader('./getMessages/en_us_Message.properties');
 console.log(getMessagesProperties);
 exports.getMessages = function(event,msgkey){
 	
