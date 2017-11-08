@@ -6,7 +6,6 @@
 //console.log(PropertiesReader);
 console.log("inside api index JS");
 var PropertiesReader = require('properties-reader');
-console.log(PropertiesReader);
 var properties = PropertiesReader('./../config/facebookbot-tr.properties'); 
 
 
