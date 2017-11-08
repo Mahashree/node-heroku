@@ -1,4 +1,4 @@
-console.log("Inside module.js");
+console.log("Inside chatbot module.js1");
 
 //var api = require('./api/index.js');
 //var path = require( "path" );
@@ -6,12 +6,17 @@ console.log("Inside module.js");
 //console.log(updater );
 //var requireDirectory = require('require-directory');
 //var api = requireDirectory(module,'./api/index.js');
- 
-
+/*try{
+var api = require('./apiws/api.js');
+}
+catch(ex){
+	console.log(ex);
+}*/
 module.exports = {
 	
-	//api
-	   api:require('./apiws/api.js') 
+	
+	
+	   api: require('./apiws/api.js')
 	   /*,
 	
 	//getMessages
@@ -59,9 +64,9 @@ module.exports = {
 		prepareRepOrderList : require('./validation/prepareRepOrderList.js'),
 		validateLineNrQtyForModifycart : require('./validation/validateLineNrQtyForModifycart.js'),
 		validateRepOrders : require('./validation/validateRepOrders.js'),
-	
-*/
+	*/
+ 
 
    
-}
-
+};
+console.log("Inside chatbot module.js2");

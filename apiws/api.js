@@ -51,7 +51,7 @@ exports.prepareWSDetails= function(type, data) {
 				host: properties.get('fbbot.fbgraph.host'),
 				port: properties.get('fbbot.fbgraph.port'),
 				path: path,
-				method:properties.get('fbbot.fbgraph.method'),,
+				method:properties.get('fbbot.fbgraph.method'),
 				family: 4,
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8',
@@ -97,7 +97,7 @@ exports.prepareWSDetails= function(type, data) {
 		case "GETDELIVADDRESS":
 			path = properties.get('fbbot.ws.getdelivaddr.tr.path');
             break;
-		case "DISPLAYDELIVADDRESS"
+		case "DISPLAYDELIVADDRESS":
 			path = properties.get('fbbot.ws.displaydelivaddr.tr.path');
             break;
         default:

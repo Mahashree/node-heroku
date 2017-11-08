@@ -1,6 +1,20 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+/*var http = require('http');
+var https = require('https');
+var request = require('request');
+
+var redis = require("redis");
+var redisClient = require('redis-connection')();
+var redisServer = require('redis-server');*/
+var app = express();
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.listen((process.env.PORT || 3000));
+app.use(session({secret: 'ssshhhhh'}));
+//var bodyParser = require('body-parser');
 var http = require('http');
 var https = require('https');
 var request = require('request');
@@ -8,13 +22,6 @@ var session = require('express-session');
 var redis = require("redis");
 var redisClient = require('redis-connection')();
 var redisServer = require('redis-server');
-var app = express();
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-app.listen((process.env.PORT || 3000));
-app.use(session({secret: 'ssshhhhh'}));
-
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
 var sess;
@@ -22,7 +29,6 @@ var modules = require('./chatbotmodules.js');
 
 console.log("modules");
 console.log(modules);
-
 console.log("Step 3");
 // Server frontpage
 app.get('/', function (req, res) {
