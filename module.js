@@ -3,8 +3,7 @@ console.log("Inside module.js");
 module.exports = {
 	
 	//api
-	   api:require('./apiws/api.js')
-	   /*,
+	   api:require('./apiws/api.js'),
 	
 	//getMessages
 		getMessages: require('./getMessages/getMessage.js'),
@@ -52,7 +51,7 @@ module.exports = {
 		validateLineNrQtyForModifycart : require('./validation/validateLineNrQtyForModifycart.js'),
 		validateRepOrders : require('./validation/validateRepOrders.js'),
 	
-*/
+
 
    
 }

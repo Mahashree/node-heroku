@@ -22,8 +22,7 @@ var session = require('express-session');
 var redis = require("redis");
 var redisClient = require('redis-connection')();
 var redisServer = require('redis-server');
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./config/facebookbot-tr.properties'); 
+ 
 var sess;
 var modules = require('./chatbotmodules.js');
 console.log(modules);
