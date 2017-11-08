@@ -1,13 +1,13 @@
 console.log("Inside chatbot module.js1");
-
+try{
 module.exports = {
 		
 		api: require('./apiws/api.js')
 	   
-	/*,
+	
 	//getMessages
 		getMessages: require('./getMessages/getMessage.js')
-		,
+		/*,
 
 	//getRepInfo
 		getRepInfo: require('./getRepInfo'),
@@ -55,5 +55,9 @@ module.exports = {
  
 
    
-};
-console.log("Inside chatbot module.js2");
+};}catch(ex){
+	
+console.log(ex);
+
+}
+	
