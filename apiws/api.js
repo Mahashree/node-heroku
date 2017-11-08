@@ -9,10 +9,6 @@ var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./facebookbot-tr.properties'); 
 
 
-console.log("properties");
-
-console.log(properties);
-
 exports.wshost = properties.get('fbbot.ws.tr.host');
 exports.wsport = properties.get('fbbot.ws.tr.port');
 exports.wsmethodType = properties.get('fbbot.ws.tr.methodtype');
