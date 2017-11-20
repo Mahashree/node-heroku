@@ -47,5 +47,5 @@ try{
  
  };
 }catch(ex){
-logger.error(ex);
+console.log(ex);
 }

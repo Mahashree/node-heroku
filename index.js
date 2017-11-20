@@ -11,11 +11,11 @@ var https = require('https');
 var request = require('request');
 var session = require('express-session');
 var XRegExp = require('xregexp');
-
+/*
 var logger = require('./util/logger');
 const appInsights = require("applicationinsights");
 appInsights.setup("a12c9fe7-387f-4e6b-843c-0bfc6ea80b9b");
-appInsights.start();
+appInsights.start();*/
 
 var propertiesParse = require('properties-parser');
 var properties = propertiesParse.read('./config/fbbot-tr.properties');
@@ -97,8 +97,8 @@ modules.getRedisInfo.getRedisInfo(event,client).then(redisData => {
 				modules.getRedisInfo.getRedisInfo(event,client).then(users => { 
 					modules.getProductDetails.getProductDetails(event,users);	
 				}).catch(err => {
-				    logger.error("promise error inside catch:");
-				    logger.error(err);
+				    console.log("promise error inside catch:");
+				    console.log(err);
 				});
 					
 					
@@ -181,7 +181,7 @@ modules.getRedisInfo.getRedisInfo(event,client).then(redisData => {
 					}
 				});
 				}catch(ex){
-					 logger.error(ex);
+					 console.log(ex);
 				}
 			}//esle
 		}else{
@@ -191,12 +191,12 @@ modules.getRedisInfo.getRedisInfo(event,client).then(redisData => {
 		}	
 }//event.messages
 if(event.postback){	
-	 logger.info("payloadText");			
+	 console.log("payloadText");			
 	var payloadText = JSON.stringify(event.postback.payload);
-	logger.info(payloadText);	
+	console.log(payloadText);	
 	if(payloadText === "\"Welcome to Avon\""){
 		try{
-		logger.info("Welcome to Avon");
+		console.log("Welcome to Avon");
 		var firstName = "";		
 					
 		var contactUsUrl =properties['fbbot.contactUsUrl'];			
@@ -255,7 +255,7 @@ if(event.postback){
 		});			
 		req.end();
 		}catch(ex){
-			logger.error(ex);
+			console.log(ex);
 		}
 		modules.resetGlobalVariables.resetGlobalVariables(event,client);
            
@@ -375,8 +375,8 @@ if(event.postback){
 				modules.getPendingOrderDetails.getPendingOrderDetails(users.orderId,users,users.isModifyItem,users.isDeleteItem,event);
 
 			 }).catch(err => {
-			    logger.error("promise error inside catch:");
-			    logger.error(err);
+			    console.log("promise error inside catch:");
+			    console.log(err);
 			  });			
 	
    }else if(payloadText === "\"confirmOrderCart\""){
@@ -388,7 +388,7 @@ if(event.postback){
 			modules.sendMessagePromise.sendMessagePromise(event.sender.id, {text: modules.getMessages.getMessages('msg.cartempty.additem')}).then(obj => {
 				modules.showConfirmOrderCartTemplate.showConfirmOrderCartTemplate(event.sender.id,"NEWORD");
 			  }).catch(err => {
-			    logger.error("promise error inside showConfirmOrderCartTemplate6");
+			    console.log("promise error inside showConfirmOrderCartTemplate6");
 			  });			
 		}else{
 			modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('msg.delivaddress.selection')});
@@ -452,8 +452,8 @@ if(event.postback){
 						});
 
 			 }).catch(err => {
-			    logger.error("promise error inside catch:");
-			    logger.error(err);
+			    console.log("promise error inside catch:");
+			    console.log(err);
 			  });	
 		
         
@@ -469,8 +469,8 @@ if(event.postback){
 		modules.getRedisInfo.getRedisInfo(event,client).then(users => {	 
 				modules.getProductDetails.getProductDetails(event,users);	
 		}).catch(err => {
-			    logger.error("promise error inside catch:");
-			    logger.error(err);
+			    console.log("promise error inside catch:");
+			    console.log(err);
 			  });
 		 
 				
@@ -532,8 +532,8 @@ if(event.postback){
 				modules.getPendingOrderDetails.getPendingOrderDetails(users.orderId,users,"true","false",event);	
 
 			 }).catch(err => {
-			    logger.error("promise error inside catch:");
-			    logger.error(err);
+			    console.log("promise error inside catch:");
+			    console.log(err);
 			  });
 		
 		}			
@@ -557,8 +557,8 @@ if(event.postback){
 				modules.getPendingOrderDetails.getPendingOrderDetails(users.orderId,users,"false","true",event);
 
 			 }).catch(err => {
-			    logger.error("promise error inside catch:");
-			    logger.error(err);
+			    console.log("promise error inside catch:");
+			    console.log(err);
 			  });			
 		}		
 	}else if(payloadText === "\"modifyQtyLnr\""){
@@ -609,8 +609,8 @@ if(event.postback){
 	
 }
   }).catch(err => {
-    logger.error("promise error inside catch:2");
-    logger.error(err);
+    console.log("promise error inside catch:2");
+    console.log(err);
   });
 
    
