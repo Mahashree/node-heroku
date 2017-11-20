@@ -11,9 +11,10 @@ var https = require('https');
 var request = require('request');
 var session = require('express-session');
 var XRegExp = require('xregexp');
-/*
+
 var logger = require('./util/logger');
-const appInsights = require("applicationinsights");
+console.log(logger);
+/*const appInsights = require("applicationinsights");
 appInsights.setup("a12c9fe7-387f-4e6b-843c-0bfc6ea80b9b");
 appInsights.start();*/
 
