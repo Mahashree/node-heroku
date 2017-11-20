@@ -1,32 +1,20 @@
-console.log("Inside chatbot module.js1");
 try{
-	var ghj=require('./getMessages/getMessage.js');
-	
-/*module.exports = {
+ module.exports = {
 		
-		api: require('./apiws/api.js'),
-	   
-	
-	//getMessages
-		getMessages: require('./getMessages/getMessage.js')
-		/*,
-
-	//getRepInfo
-		getRepInfo: require('./getRepInfo'),
-		
-	//login
-		fbLogin: require('./login/fbLogin.js'),
-		getAccNrWithToken: require('./login/getAccNrWithToken.js'),
-	
+	api: require('./apiws/api.js'), 	 
+	getMessages: require('./getMessages/getMessage.js'),	 
+	getRepInfo: require('./getRepInfo/getRepInfo'),
+	fbLogin: require('./login/fbLogin.js'),
+	getAccNrWithToken: require('./login/getAccNrWithToken.js'),
 	//emoji
-	   emojiCheck: require('./emoji/emojiCheck.js'),
+    emojiCheck: require('./emoji/emojiCheck.js'),
 	   
 	//getItems  
 	   getItemsData: require('./getItems/getItemsData.js'),
 	   getPendingOrderDetails:require('./getItems/getPendingOrderDetails.js'),
 	   getProductDetails: require('./getItems/getProductDetails.js'),
 	   getProductImage: require('./getItems/getProductImage.js'),
-	   getRedisInfo: require('./getItems/getRedisInfo.js'),
+	   getRedisInfo: require('./common/getRedisInfo.js'),
 	   responseGetItemData: require('./getItems/responseGetItemData.js'),
 	   sendMessagePromise: require('./getItems/sendMessagePromise.js'),
 	   showConfirmOrderCartTemplate: require('./getItems/showConfirmOrderCartTemplate.js'),
@@ -39,12 +27,12 @@ try{
 	   
 	//modifyCart
 		deleteItemByLineNumber : require('./modifyCart/deleteItemByLineNumber.js'),
-		getRedisDetails : require('./modifyCart/getRedisDetails.js'),
+		//getRedisDetails : require('./modifyCart/getRedisDetails.js'),
 		modifyIemByLineNumber : require('./modifyCart/modifyIemByLineNumber.js'),
 		
 	//order
 		deleteRepOrder : require('./order/deleteRepOrder.js'),
-		resetGlobalVariables : require('./order/resetGlobalVariables.js'),
+		resetGlobalVariables : require('./common/resetGlobalVariables.js'),
 		saveRepOrder : require('./order/saveRepOrder.js'),
 		submitOrderfn : require('./order/submitOrderfn.js'),
 	
@@ -54,13 +42,10 @@ try{
 		validateLineNrQtyForModifycart : require('./validation/validateLineNrQtyForModifycart.js'),
 		validateRepOrders : require('./validation/validateRepOrders.js'),
 	
+	//sendMessage Template
+		sendMessage : require('./sendMessage/sendMessageTemplate.js')
  
-
-   
-};*/
+ };
 }catch(ex){
-	
-console.log(ex);
-
+logger.error(ex);
 }
-	

@@ -1,6 +1,8 @@
 exports.getRepInfo = function(event,redisData) {
-	var modules = require('../module.js');
+	
+	var modules = require('../chatbotmodules.js');
     var http = require('http');
+	var client = modules.api.client;
     var data = JSON.stringify({
         "profile": {
             "userId": redisData.userId,
@@ -12,9 +14,10 @@ exports.getRepInfo = function(event,redisData) {
             "version": "1",
             "wsShippingFacilityCode": "018"
         }
-    });
-
-    var options = modules.api.prepareWSDetails("REPPROFILE", data);//end 20170824:01
+    });	
+	
+    var options = modules.api.prepareWSDetails("REPPROFILE", data); 
+	console.log(options);
     var req = http.request(options, function (res) {
         var msg = '';
 
@@ -22,9 +25,7 @@ exports.getRepInfo = function(event,redisData) {
         res.on('data', function (chunk) {
             msg += chunk;
         });
-        res.on('end', function () {
-            console.log("res end success");
-            console.log(JSON.parse(msg));
+        res.on('end', function () {           
             var campaignArray = JSON.parse(msg).profile.data.campaigns;
             campaign = campaignArray[0].cmpgnNr;   
             campaignYr = campaignArray[0].cmpgnYrNr;
@@ -39,23 +40,24 @@ exports.getRepInfo = function(event,redisData) {
                         "payload": {
                             "template_type": "generic",
                             "elements": [{
-                                "title": "Sure, I can help you on that! How would you like to add products?",
-                                "subtitle": "Your current campaign is " + campaign,
+                                "title": modules.getMessages.getMessages('addproduct.title'),
+                                "subtitle": modules.getMessages.getMessages('campaign.subtitle.msg') + campaign,
                                 "buttons": [{
                                     "type": "postback",
                                     "payload": "lineNrWithQtySearch",
-                                    "title": "Enter line number"
+                                    "title": modules.getMessages.getMessages('btn.enter.lineNr')
                                 },
                                 {
                                     "type": "postback",
                                     "payload": "productDescSearch",
-                                    "title": "Search product"
+                                    "title": modules.getMessages.getMessages('btn.searchproduct')
                                 }]
                             }]
                         }
                     }
                 };
-                sendMessage(event.sender.id, message);
+				 
+                modules.sendMessage.sendMessage(event.sender.id, message);
             }, 1000);
         });
     });

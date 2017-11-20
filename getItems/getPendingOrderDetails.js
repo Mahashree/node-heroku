@@ -1,7 +1,7 @@
 exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCart,isDeleteItemCart,event){
 	
-		var modules = require('../module.js');
-	
+		var modules = require('../chatbotmodules.js');
+		var client = modules.api.client;
 		var productImage = "";
 		var productList = [];	
 		var startIndexPending = redisDatas.startIndexPending;
@@ -25,14 +25,15 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 		});
 		
 		var options = modules.api.prepareWSDetails("GETPENDINGITMS",data);
-		var req = http.request(options, function(res) {
+		
+		var req = http.request(options, function(res) {		
 		var msg = '';
 		res.setEncoding('utf8');
 		res.on('data', function(chunk) {
 		msg += chunk;
 		});
 		res.on('end', function() {
-		  console.log(msg);
+		  
 		var response = JSON.parse(msg).pendingOrdDetlResp;
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){			
@@ -53,13 +54,13 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 				});						
 				if(pendingItemsLen==1){
 					productList.push({
-					"title":modules.getMessages.getMessages(orderitems.msg),				
-					"subtitle":modules.getMessages.getMessages(cartitems.msg)						
+					"title":modules.getMessages.getMessages('orderitems.msg'),				
+					"subtitle":modules.getMessages.getMessages('cartitems.msg')						
 					});
 				}				
 				productList.push({
-				"title":modules.getMessages.getMessages(title.totalprice)+" = "+pendingOrderDetl.totOrdAmt+" "+modules.getMessages.getMessages(currency.symbol), 
-				"subtitle":modules.getMessages.getMessages(title.noOfItems.added)+" : "+pendingItemsLen+ modules.getMessages.getMessages(title.totalqty)+" : " +totalQty
+				"title":modules.getMessages.getMessages('title.totalprice')+" = "+pendingOrderDetl.totOrdAmt+" "+modules.getMessages.getMessages('currency.symbol'), 
+				"subtitle":modules.getMessages.getMessages('title.noOfItems.added')+" : "+pendingItemsLen+ modules.getMessages.getMessages('title.totalqty')+" : " +totalQty
 				});
 						
 				for(var i=0; i<indexBaseditemsLen; i++){								
@@ -69,10 +70,10 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 							productList.push({
 							"title":items[i].lineNrDesc,
 							"image_url":orderedItemsImagesRedis[j].url,
-							"subtitle":items[i].brchrPrcAmt+"* "+items[i].qty+"= "+ items[i].brchrPrcAmt*items[i].qty+" "+modules.getMessages.getMessages(currency.symbol),	
+							"subtitle":items[i].brchrPrcAmt+"* "+items[i].qty+"= "+ items[i].brchrPrcAmt*items[i].qty+" "+modules.getMessages.getMessages('currency.symbol'),	
 							"buttons": [
 								  {
-									"title": modules.getMessages.getMessages(btn.action.Select),
+									"title": modules.getMessages.getMessages('btn.action.Select'),
 									"type": "postback",
 									"payload":items[i].lineNr
 									
@@ -98,7 +99,7 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 						"top_element_style": "compact"					
 							}
 					   }};
-					sendMessage(event.sender.id, message);	
+					modules.sendMessage.sendMessage(event.sender.id, message);	
 						
 				}else{
 					viewcount++;
@@ -115,14 +116,14 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 						"top_element_style": "compact",
 						"buttons": [
 							{
-							"title": modules.getMessages.getMessages(btn.action.viewmore),
+							"title": modules.getMessages.getMessages('btn.action.viewmore'),
 							 "type": "postback",
 							"payload": "viewMoreItemsCart"
 							}
 						 ]
 							}
 					   }};
-					sendMessage(event.sender.id, message);						 
+					modules.sendMessage.sendMessage(event.sender.id, message);						 
 				}
 						
 					client.hmset(event.sender.id, {						
@@ -135,18 +136,18 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 				}); 
 				
 				if(viewcount == 0){
-				sendMessage(event.sender.id, {text: modules.getMessages.getMessages(msg.cart.products)});	
+				modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('msg.cart.products')});	
 				}
 				if(pendingItemsLen==1){
 					productList.push({
-					"title":modules.getMessages.getMessages(orderitems.msg),				
-					"subtitle":modules.getMessages.getMessages(cartitems.msg)						
+					"title":modules.getMessages.getMessages('orderitems.msg'),				
+					"subtitle":modules.getMessages.getMessages('cartitems.msg')						
 					});
 				}
 				
 				productList.push({
-				"title":modules.getMessages.getMessages(title.totalprice)+" = "+pendingOrderDetl.totOrdAmt+" "+modules.getMessages.getMessages(currency.symbol), 
-				"subtitle":modules.getMessages.getMessages(title.noOfItems.added)+" : "+pendingItemsLen+ modules.getMessages.getMessages(title.totalqty)+" : " +totalQty
+				"title":modules.getMessages.getMessages('title.totalprice')+" = "+pendingOrderDetl.totOrdAmt+" "+modules.getMessages.getMessages('currency.symbol'), 
+				"subtitle":modules.getMessages.getMessages('title.noOfItems.added')+" : "+pendingOrderDetl.totalItemCnt+ modules.getMessages.getMessages('title.totalqty')+" : " +totalQty
 				});
 				
 				for(var i=0; i<indexBaseditemsLen; i++){						
@@ -160,7 +161,7 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 							"subtitle":items[i].brchrPrcAmt+"* "+items[i].qty+"= "+ items[i].brchrPrcAmt*items[i].qty+" "+"TL",	
 							
 							});
-							console.log(productList);
+							
 							break;
 					   }
 					}					
@@ -187,8 +188,9 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 					modules.sendMessagePromise.sendMessagePromise(event.sender.id, message).then(obj => {
 						modules.showConfirmOrderCartTemplate.showConfirmOrderCartTemplate(event.sender.id,"EXISTORD");
 					  }).catch(err => {
-					   console.log("promise error inside catch showConfirmOrderCartTemplate");
+							console.log("promise error inside catch showConfirmOrderCartTemplate");
 					  });
+					
 				}else{
 						
 					viewcount++;
@@ -204,7 +206,7 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 						"top_element_style": "compact",
 						"buttons": [
 							{
-							"title": modules.getMessages.getMessages(btn.action.viewmore),
+							"title": modules.getMessages.getMessages('btn.action.viewmore'),
 							 "type": "postback",
 							"payload": "viewMoreItemsCart"
 							}
@@ -217,7 +219,7 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 						modules.showConfirmOrderCartTemplate.showConfirmOrderCartTemplate(event.sender.id,"EXISTORD");
 					}  
 					  }).catch(err => {
-					   console.log("promise error inside catch showConfirmOrderCartTemplate 3");
+					   console.log("promise error inside catch showConfirmOrderCartTemplate");
 					  });
 						}
 				
@@ -233,18 +235,18 @@ exports.getPendingOrderDetails = function (repOrderID,redisDatas,isModifyItemCar
 								
 			message = {text: "Sorry cart details Not available."}
 			if(response.hasOwnProperty("code")&& (response.code=="00"||response.code=="100")){
-				message = {text: modules.getMessages.getMessages(msg.cartempty.additem)}
+				message = {text: modules.getMessages.getMessages('msg.cartempty.additem')}
 				
 				modules.sendMessagePromise.sendMessagePromise(event.sender.id, message).then(obj => {
 					modules.showConfirmOrderCartTemplate.showConfirmOrderCartTemplate(event.sender.id,"NEWORD"); 
 					  }).catch(err => {
-					   console.log("promise error inside catch showConfirmOrderCartTemplate4");
+					   console.log("promise error inside catch showConfirmOrderCartTemplate");
 					  });
 			}
 			if(response.hasOwnProperty("code")&& (response.code=="600")){
-				resetGlobalVariables(event);
-				message = {text: modules.getMessages.getMessages(err.occured)}
-				sendMessage(event.sender.id, message);
+				modules.resetGlobalVariables.resetGlobalVariables(event,client);
+				message = {text: modules.getMessages.getMessages('err.occured')}
+				modules.sendMessage.sendMessage(event.sender.id, message);
 			}	
 		  
 		}	

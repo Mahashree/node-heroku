@@ -1,7 +1,7 @@
 exports.getProductImage = function (imgLineNumber,event,redisDatas){
 	
-	var modules = require('../module.js');
-		
+	var modules = require('../chatbotmodules.js');
+	var client = modules.api.client;	
 	return new Promise((resolve, reject) => {
 	
 	var itemImagesList=JSON.parse(redisDatas.itemImages);	
@@ -67,7 +67,7 @@ exports.getProductImage = function (imgLineNumber,event,redisDatas){
 	}else{
 			
 			 return reject("product image failure");
-			//error handling
+			
 			
 			}
 		}); 

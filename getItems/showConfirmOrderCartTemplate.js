@@ -1,6 +1,7 @@
 exports.showConfirmOrderCartTemplate = function (recipientId,actionValue){
-	
-		if(actionValue=="NEWORD"){
+	console.log("inside showConfirmOrderCartTemplate ");
+	var modules = require('../chatbotmodules.js');
+		if(actionValue==="NEWORD"){
 			
 			message = {
 				"attachment": {
@@ -8,11 +9,11 @@ exports.showConfirmOrderCartTemplate = function (recipientId,actionValue){
 					"payload": {
 						"template_type": "generic",
 						"elements": [{
-							"title": "Please select  Add Item to add products in Cart",
+							"title": modules.getMessages.getMessages('cartempty.additem.msg'),
 							"buttons": [{
 								"type": "postback",
 								"payload": "addmoreitems",
-								"title": "Add Item"
+								"title": modules.getMessages.getMessages('action.additem')
 								}]
 						}]
 					}
@@ -25,18 +26,18 @@ exports.showConfirmOrderCartTemplate = function (recipientId,actionValue){
 					"payload": {
 						"template_type": "generic",
 						"elements": [{
-							"title": "Please select to add more products or confirm",
+							"title": modules.getMessages.getMessages('cartempty.additem.msg'),
 							"buttons": [{
 								"type": "postback",
 								"payload": "addmoreitems",
-								"title": "Add more"
+								"title": modules.getMessages.getMessages('action.additem')
 								},{
 								"type": "postback",
 								"payload": "modifyCart",
-								"title": "Modify Cart"
+								"title": modules.getMessages.getMessages('action.modifycart')
 								},{
 								"type": "postback",
-								"title": "Confirm Order",
+								"title": modules.getMessages.getMessages('action.confirmorder'),
 								"payload": "confirmOrderCart"
 							}]
 						}]
@@ -45,6 +46,6 @@ exports.showConfirmOrderCartTemplate = function (recipientId,actionValue){
 				};
 			
 		}	
-		sendMessage(recipientId, message);			 
+		modules.sendMessage.sendMessage(recipientId, message);			 
 	
 }

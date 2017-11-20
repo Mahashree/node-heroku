@@ -1,7 +1,7 @@
 exports.deliveryaddrdisplay= function (event,redisDatasAddrData){
 	
-		var modules = require('../module.js');
-		
+		var modules = require('../chatbotmodules.js');
+		var client = modules.api.client;
         var data = JSON.stringify({
 			"getDlvryAddr" : {                   
 					"mrktCd": modules.api.mrktCd,
@@ -23,54 +23,52 @@ exports.deliveryaddrdisplay= function (event,redisDatasAddrData){
 		res.on('data', function(chunk) {
 		msg += chunk;
 		});
-		res.on('end', function() {	
-		
-		var lastdelivAddrArray =JSON.parse(msg).LastOrdAddrResp.addrDetl;
-		
-		var defaultAddrLocTyp=redisDatasAddrData.defaultAddrLocTyp ;
-		
-		var delivAddrDisplay = [];
-		var lastAddrLocTyp='';
-		var lastdelivAddr = '';	
-		var defaultdelivAddr = redisDatasAddrData.defaultdelivAddr;				
-	   if(typeof lastdelivAddrArray!=='undefined'&& lastdelivAddrArray[0].hasOwnProperty("addrLine1Txt")){
-		
-		lastdelivAddr = lastdelivAddrArray[0].addrLine1Txt;
-		lastAddrLocTyp = lastdelivAddrArray[0].addrLocTyp;
-		
-		client.hmset(event.sender.id, {
-			'lastdelivAddr':lastdelivAddr,
-			'lastAddrLocTyp':lastAddrLocTyp						
-											
-		}); 				
+	res.on('end', function() {	
+	var responseGetLastdelivAddr = JSON.parse(msg);
+	if(responseGetLastdelivAddr.hasOwnProperty('LastOrdAddrResp')&& responseGetLastdelivAddr.LastOrdAddrResp.success){
+			var lastdelivAddrArray =responseGetLastdelivAddr.LastOrdAddrResp.addrDetl;		
+			var defaultAddrLocTyp=redisDatasAddrData.defaultAddrLocTyp;			
+			var delivAddrDisplay = [];
+			var lastAddrLocTyp='';
+			var lastdelivAddr = '';	
+			var defaultdelivAddr = redisDatasAddrData.defaultdelivAddr;				
+			if(typeof lastdelivAddrArray!=='undefined'&& lastdelivAddrArray[0].hasOwnProperty("addrLine1Txt")){
+			
+			lastdelivAddr = lastdelivAddrArray[0].addrLine1Txt;
+			lastAddrLocTyp = lastdelivAddrArray[0].addrLocTyp;
+			
+			client.hmset(event.sender.id, {
+				'lastdelivAddr':lastdelivAddr,
+				'lastAddrLocTyp':lastAddrLocTyp						
+												
+			}); 				
 			if(defaultdelivAddr === lastdelivAddr){
 				delivAddrDisplay.push({
-					"title": modules.getMessages.getMessages(delivaddress.title),
+					"title": modules.getMessages.getMessages('delivaddress.title'),
 					"subtitle": defaultdelivAddr,
 					"buttons": [{
-					"title": "Select",
+					"title": modules.getMessages.getMessages('btn.action.Select'),
 					"type": "postback",
-					"payload": "DEFAULTADDR"
-					
+					"payload": "DEFAULTADDR"					
 								}]
 								});		
 			
 			}else{					
 			delivAddrDisplay.push({
-					"title": modules.getMessages.getMessages(delivaddress.title),
+					"title": modules.getMessages.getMessages('delivaddress.title'),
 					"subtitle": defaultdelivAddr,
 					"buttons": [{
-					"title": "Select",
+					"title": modules.getMessages.getMessages('btn.action.Select'),
 					"type": "postback",
 					"payload": "DEFAULTADDR"
 					
 								}]
 								},
 								{
-					"title": modules.getMessages.getMessages(lastdelivaddress.title),
+					"title": modules.getMessages.getMessages('lastdelivaddress.title'),
 					"subtitle": lastdelivAddr,
 					"buttons": [{
-					"title": "Select",
+					"title": modules.getMessages.getMessages('btn.action.Select'),
 					"type": "postback",
 					"payload": "LASTDELIVADDR"
 					
@@ -80,10 +78,10 @@ exports.deliveryaddrdisplay= function (event,redisDatasAddrData){
 		}else{ 
 			
 			delivAddrDisplay.push({
-					"title": modules.getMessages.getMessages(delivaddress.title),
+					"title": modules.getMessages.getMessages('delivaddress.title'),
 					"subtitle": defaultdelivAddr,
 					"buttons": [{
-					"title": "Select",
+					"title": modules.getMessages.getMessages('btn.action.Select'),
 					"type": "postback",
 					"payload": "DEFAULTADDR"
 					
@@ -102,22 +100,30 @@ exports.deliveryaddrdisplay= function (event,redisDatasAddrData){
 							   }
 							  }
 					};
-			sendMessage(event.sender.id, message);				
+			modules.sendMessage.sendMessage(event.sender.id, message);				
 		}
 		else{
 		
-		message = {
-			"attachment": {
-				"type": "template",
-				"payload": {
-				"template_type": "generic",
-				"elements":delivAddrDisplay
-						   }
-						  }
-				};
-		sendMessage(event.sender.id, message);
+			message = {
+				"attachment": {
+					"type": "template",
+					"payload": {
+					"template_type": "generic",
+					"elements":delivAddrDisplay
+							   }
+							  }
+					};
+			modules.sendMessage.sendMessage(event.sender.id, message);
 		
 		}
+	}else{
+			if(responseGetLastdelivAddr.hasOwnProperty("code")&& (responseGetLastdelivAddr.code=="600")){
+					message = {text: modules.getMessages.getMessages('err.session.expired')}			
+					modules.sendMessage.sendMessage(event.sender.id,message);
+			}else{
+			modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('err.occured')});
+			}					
+	}
 		
 		}); 
 		

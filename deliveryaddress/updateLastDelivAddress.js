@@ -1,6 +1,6 @@
 exports.updateLastDelivAddress = function(event,redisData){ 
 
-	var modules = require('../module.js');
+	var modules = require('../chatbotmodules.js');
 	
 	var repOrderOrd = redisData.orderId;	
 	var data = JSON.stringify({
@@ -8,7 +8,7 @@ exports.updateLastDelivAddress = function(event,redisData){
 						"addrLocType":redisData.lastAddrLocTyp ,
 						"acctNr": redisData.userId,
 						"addr": {
-							"addrLine1Txt": redisData.lastdelivAddr,
+							"addrLine1Txt": encodeURIComponent(redisData.lastdelivAddr),
 							"addrLocTyp": redisData.lastAddrLocTyp,
 							"cashOnDlvryInd": "N",
 							"ordTyp": "REG"
@@ -36,20 +36,22 @@ exports.updateLastDelivAddress = function(event,redisData){
 		});
 		res.on('end', function() {
 		
+		var responseUpdateAddr=JSON.parse(msg);
+		if(responseUpdateAddr.hasOwnProperty('updateDeliveryInfoResp')&& responseUpdateAddr.updateDeliveryInfoResp.success){ 
 			message = {
 				"attachment": {
 					"type": "template",
 					"payload": {
 					"template_type": "button",
-					"text": modules.getMessages.getMessages(msg.orderSummary.title)+repOrderOrd+ modules.getMessages.getMessages(totalprice.msg) +redisData.totalPrice,
+					"text": modules.getMessages.getMessages('msg.orderSummary.title')+repOrderOrd+ modules.getMessages.getMessages('totalprice.msg') +redisData.totalPrice,
 					"buttons":[{
 						"type":"postback",
-						"title":modules.getMessages.getMessages(btn.action.Confirm),
+						"title":modules.getMessages.getMessages('btn.action.Confirm'),
 						"payload":"submitOrderDeliv"
 								},			
 								{
 						"type":"postback",
-						"title":modules.getMessages.getMessages(btn.action.cancel),
+						"title":modules.getMessages.getMessages('btn.action.cancel'),
 						"payload":"cancelOrder"
 								}
 						]
@@ -57,8 +59,17 @@ exports.updateLastDelivAddress = function(event,redisData){
 							 }
 							
 					};
-			sendMessage(event.sender.id, message);
-			
+			modules.sendMessage.sendMessage(event.sender.id, message);
+		}else{
+				
+			 if(responseUpdateAddr.hasOwnProperty("code")&& (responseUpdateAddr.code=="600")){
+					message = {text: modules.getMessages.getMessages('err.session.expired')}			
+					modules.sendMessage.sendMessage(event.sender.id,message);
+			}else{
+			modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('err.occured')});
+			}
+				
+		}
 		
 		});
 		});

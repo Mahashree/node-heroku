@@ -1,7 +1,7 @@
 exports.modifyIemByLineNumber=function (event,lineNr,qty,redisData){
 	
-	var modules = require('../module.js');	
-		
+	var modules = require('../chatbotmodules.js');	
+	var client = modules.api.client;	
 	var repOrderOrd = redisData.orderId;
 	var token = redisData.token;
 	var userId = redisData.userId;
@@ -37,11 +37,14 @@ exports.modifyIemByLineNumber=function (event,lineNr,qty,redisData){
 		
 	if(responseModifyItem!='undefined' && responseModifyItem.success &&!responseModifyItem.hasOwnProperty("errors")){
 		client.hmset(event.sender.id, {
-			'isModifyItem':false,		 
+			'isModifyItem':false,
+			'viewMoreCount':0,
+			'startIndexPending':0,
+			'endIndexPending':3,		 
 			'qtyEntered':false
 		});
 			
-		modules.getRedisDetails.getRedisDetails(event).then(users => { 
+		modules.getRedisInfo.getRedisInfo(event,client).then(users => { 
 							
 			modules.getPendingOrderDetails.getPendingOrderDetails(repOrderOrd,users,"false","false",event);	
 
@@ -56,14 +59,14 @@ exports.modifyIemByLineNumber=function (event,lineNr,qty,redisData){
 		
 		});	
 		if(responseModifyItem.hasOwnProperty("code")&& (responseModifyItem.code=="600")){
-				orders.resetGlobalVariables.resetGlobalVariables(event);
-				message = {text: modules.getMessages.getMessages(err.session.expired)}					
-				sendMessage(event.sender.id, message);
+				modules.resetGlobalVariables.resetGlobalVariables(event,client);
+				message = {text: modules.getMessages.getMessages('err.session.expired')}					
+				modules.sendMessage.sendMessage(event.sender.id, message);
 		}else{
-			message = {text: modules.getMessages.getMessages(err.msg.modify.status)};											
-			sendMessage(event.sender.id, message);
+			message = {text: modules.getMessages.getMessages('err.msg.modify.status')};											
+			modules.sendMessage.sendMessage(event.sender.id, message);
 			
-			modules.getRedisDetails.getRedisDetails(event).then(users => { 					
+			modules.getRedisInfo.getRedisInfo(event,client).then(users => { 				
 				modules.getPendingOrderDetails.getPendingOrderDetails(repOrderOrd,users,"false","false",event);	
 			}).catch(err => {
 						   console.log("promise error inside catch:");

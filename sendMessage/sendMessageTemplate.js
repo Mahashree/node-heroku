@@ -1,6 +1,7 @@
+console.log("Inside sendMessage");
 var request = require('request');
-exports.sendMessagePromise = function (recipientId, message) {
-	return new Promise((resolve, reject) => {	
+exports.sendMessage=function (recipientId, message) {
+	console.log('message: ', message);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
@@ -16,7 +17,5 @@ exports.sendMessagePromise = function (recipientId, message) {
             console.log('Error: ', response.body.error);
         }
 		console.log('message sent successfully');
-		return resolve(response);
     });
-	})
 };

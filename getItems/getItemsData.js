@@ -1,7 +1,8 @@
 exports.getItemsData =function (event,redisDatas){	
 	
-	var modules = require('../module.js');	
-	
+	var modules = require('../chatbotmodules.js');	
+	var client = modules.api.client;
+	exports.getItemdataValue = true;
  return new Promise((resolve, reject) => { 
                                             
 	var searchInputByProdName = "";	
@@ -11,11 +12,11 @@ exports.getItemsData =function (event,redisDatas){
 	var endIndex=redisDatas.endIndex;
 	if(isNaN(redisDatas.searchKeyWord)){
 	
-		searchInputByProdName =  searchValue;
+		searchInputByProdName =  encodeURIComponent(searchValue);
 				
 	}else{
 	
-	searchInputByLineNr = searchValue;
+		searchInputByLineNr = searchValue;
 	}	
 	var http = require('http'); 			
 	
@@ -53,9 +54,8 @@ exports.getItemsData =function (event,redisDatas){
 		msg += chunk;
 	});
 	res.on('end', function() {
-					
+				
 	var  productDetails = (JSON.parse(msg).lclLineNrResp)?JSON.parse(msg).lclLineNrResp:[];	
-	console.log(productDetails);
 	if(productDetails && productDetails.success && !productDetails.hasOwnProperty("errors")){							
 		
 		client.hmset(event.sender.id, {
@@ -71,14 +71,15 @@ exports.getItemsData =function (event,redisDatas){
 		modules.getProductImage.getProductImage(lineNrImagesList,event,redisDatas).then(productImage => {
 		
 		var data = modules.responseGetItemData.responseGetItemData(event,productDetails);
+		
 		if (data) {
      		return resolve(data);
   		} else {
 		return resolve(data);
   		}
 		}).catch(err => {
-		console.log("promise error inside catch 1");
-		console.log(err);
+			console.log("promise error inside catch 1");
+			console.log(err);
 		});	
 	}else{		 
 		
@@ -87,25 +88,26 @@ exports.getItemsData =function (event,redisDatas){
 		'searchProduct':false
 		});
 			
-		message = {text: modules.getMessages.getMessages(err.searchproduct)}
+		message = {text: modules.getMessages.getMessages('err.searchproduct')}
 		
 		if(productDetails.hasOwnProperty("errors")){
-			if(productDetails.errors[0].errCd =='10172'){
-				
-			client.hmset(event.sender.id, {
-				'searchProduct':true
-			}); 
-			message ={text: modules.getMessages.getMessages(err.search.decription)}
-			}
-			
+			console.log("Inside error1");
+			if(productDetails.errors[0].errCd =='10172'){	
+				console.log("Inside error2");			
+				client.hmset(event.sender.id, {
+					'searchProduct':true
+				}); 
+				message ={text: modules.getMessages.getMessages('err.search.decription')}
+				exports.getItemdataValue = false;
+			}			
 		}else{
-			if(productDetails.code=='600'){
-				resetGlobalVariables(event);
-				 message = {text: modules.getMessages.getMessages(err.session.expired)}
+			if(productDetails.hasOwnProperty("code") && productDetails.code=='600'){
+				modules.resetGlobalVariables.resetGlobalVariables(event,client);
+				 message = {text: modules.getMessages.getMessages('err.session.expired')}
 			}
 				
 		}
-		sendMessage(event.sender.id, message);	
+		modules.sendMessage.sendMessage(event.sender.id, message);	
 	}
 	
   }); 

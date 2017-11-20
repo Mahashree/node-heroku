@@ -1,7 +1,7 @@
 exports.deleteItemByLineNumber=function (event,delReqLineNr,redisDatas){ 
    
-	var modules = require('../module.js');	
-		
+	var modules = require('../chatbotmodules.js');	
+	var client = modules.api.client;	
 	var repOrderOrd =  redisDatas.orderId;	
 	var http = require('http');					
 	var data = JSON.stringify({
@@ -32,15 +32,18 @@ exports.deleteItemByLineNumber=function (event,delReqLineNr,redisDatas){
 		var responseDeleteItem = responseDeleteLineNr.DeleteByLineNrResp;
 		if(responseDeleteLineNr!='undefined' && responseDeleteItem.success &&!responseDeleteItem.hasOwnProperty("errors")){	
 		
-			sendMessage(event.sender.id, {text: modules.getMessages.getMessages(msg.productdelete.status)});				
+			modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('msg.productdelete.status')});				
 			client.hmset(event.sender.id, {
 				'isDelOrModifyLineNr':false,
-				'isDeleteItem':false,				
+				'isDeleteItem':false,
+				'viewMoreCount':0,
+				'startIndexPending':0,
+				'endIndexPending':3,				
 				'delOrModifyLineNr':''
 						
 			}); 						
 						
-			modules.getRedisDetails.getRedisDetails(event).then(users => {
+			modules.getRedisInfo.getRedisInfo(event,client).then(users => {
 				modules.getPendingOrderDetails.getPendingOrderDetails(repOrderOrd,users,"false","false",event);
 			 }).catch(err => {
 			   console.log("promise error inside catch:");
@@ -55,14 +58,14 @@ exports.deleteItemByLineNumber=function (event,delReqLineNr,redisDatas){
 				'isDeleteItem':true		
 						
 			}); 
-			message = {text: modules.getMessages.getMessages(err.occured)}
+			message = {text: modules.getMessages.getMessages('err.occured')}
 			
 			if(responseDeleteItem.hasOwnProperty("code")&& (responseDeleteItem.code=="600")){
-				modules.resetGlobalVariables.resetGlobalVariables(event);
-				message = {text: modules.getMessages.getMessages(err.session.expired)}					
+				modules.resetGlobalVariables.resetGlobalVariables(event,client);
+				message = {text: modules.getMessages.getMessages('err.session.expired')}					
 				
 			}					
-			sendMessage(event.sender.id, message);
+			modules.sendMessage.sendMessage(event.sender.id, message);
 					
 		}
 					

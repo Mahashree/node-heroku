@@ -1,7 +1,8 @@
 
 exports.validateLineNrQtyForModifycart = function(event,delOrModifyLineNr,modifyqty,redisDatas){
-	var modules = require('../module.js');	
-		
+	console.log("Inside validateLineNrQtyForModifycart function");
+	var modules = require('../chatbotmodules.js');	
+	var client = modules.api.client;
     return new Promise((resolve, reject) => {
 	 
         var modifyReqItems = [];
@@ -28,8 +29,9 @@ exports.validateLineNrQtyForModifycart = function(event,delOrModifyLineNr,modify
 		} 
 		});
 
-				
+		console.log(data);
 		var options = modules.api.prepareWSDetails("VALIDATELINENRQTY",data);
+		console.log(options);	
 		var req = http.request(options, function(res) {
 		var msg = '';
 		res.setEncoding('utf8');
@@ -37,24 +39,45 @@ exports.validateLineNrQtyForModifycart = function(event,delOrModifyLineNr,modify
 		msg += chunk;
 		});
 		res.on('end', function() {
-		var itemsList = JSON.parse(msg).itemvalidation.items;
-		itemsList=(typeof itemsList === 'undefined')?[]:itemsList;			
-		if(itemsList[0].validItem){					
-			var isValidLineNrQty = true;	
-			client.hmset(event.sender.id, {
-				'isValidLineNrQty':true
-				}); 	
-			return resolve(isValidLineNrQty);					
-		}else{
-				if(itemsList[0].errors[0].errCd === '000136'){				
-					message = {text: "Its demo Product and the qty entered exceeds demo limit.So Please  enter valid  qty to add item in your cart."};
-					sendMessage(event.sender.id, message);							  
+			var itemsList = JSON.parse(msg).itemvalidation.items;
+			itemsList=(typeof itemsList === 'undefined')?[]:itemsList;			
+			if(itemsList[0].validItem){					
+				var isValidLineNrQty = true;	
+				client.hmset(event.sender.id, {
+					'isValidLineNrQty':true
+					}); 	
+				return resolve(isValidLineNrQty);					
+			}else{
+				if(itemsList[0].errors[0].errCd === '000136'){	
+				 client.hmset(event.sender.id, {
+						'qtyEntered':true,
+						'searchProduct':false,
+						'isModifyItem':true
+						 
+					});  
+					var errDesc = modules.getErrDescription.getErrDescription(itemsList[0].errors[0].errCd);				
+					modules.sendMessage.sendMessage(event.sender.id,{text:errDesc}); 
+											  
 
 				}else{
-				var errDesc = modules.getErrDescription.getErrDescription(itemsList[0].errors[0].errCd);				
-				sendMessage(event.sender.id,{text:errDesc});
-				sendMessage(event.sender.id,{text:"Unable to update the qty"});
-				getPendingOrderDetails(repOrderOrd,redisDatas,"false","false",event);	
+					var errDesc = modules.getErrDescription.getErrDescription(itemsList[0].errors[0].errCd);				
+					modules.sendMessage.sendMessage(event.sender.id,{text:errDesc});				
+					
+					client.hmset(event.sender.id, {			
+						'viewMoreCount':0,
+						'startIndexPending':0,
+						'endIndexPending':3		 
+			
+					});
+			
+					modules.getRedisInfo.getRedisInfo(event,client).then(validateObj => {							
+							
+						modules.getPendingOrderDetails.getPendingOrderDetails(validateObj.orderId,validateObj,"false","false",event);	
+
+					}).catch(err => {
+						   console.log("promise error inside catch:");
+						   console.log(err);
+					});		
 
 				}
 			}

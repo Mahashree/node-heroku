@@ -1,6 +1,5 @@
 exports.submitOrderfn = function (event,redisData){
-	var modules = require('../module.js');	
-		
+	var modules = require('../chatbotmodules.js');	 
 	var repOrderID = redisData.orderId;	
 	var http = require('http');					
 	var data = JSON.stringify({
@@ -29,15 +28,15 @@ exports.submitOrderfn = function (event,redisData){
 	res.on('end', function() {									
 			var response = JSON.parse(msg);
 			var responseStatus = response.order.success; 					
-			if(responseStatus){		
-				sendMessage(event.sender.id, {text:modules.getMessages.getMessages(msg.order.success)+ redisData.orderId});
+			if(responseStatus){                			
+				modules.sendMessage.sendMessage(event.sender.id, {text:modules.getMessages.getMessages('msg.order.success')+ redisData.orderId});
 			}else{	
 				if(response.order.hasOwnProperty("code")&& (response.order.code=="600")){
-					orders.resetGlobalVariables.resetGlobalVariables(event);
-					message = {text: modules.getMessages.getMessages(err.session.expired)}					
-					sendMessage(event.sender.id, message);
+					modules.resetGlobalVariables.resetGlobalVariables(event,client);
+					message = {text: modules.getMessages.getMessages('err.session.expired')}					
+					modules.sendMessage.sendMessage(event.sender.id, message);
 				}else{
-					sendMessage(event.sender.id, {text: modules.getMessages.getMessages(err.submitorder.status)});
+					modules.sendMessage.sendMessage(event.sender.id, {text: modules.getMessages.getMessages('err.submitorder.status')});
 				}	
 			}		 
 	  }); 

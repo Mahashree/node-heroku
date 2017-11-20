@@ -1,26 +1,20 @@
+var redis = require("redis");
+var redisClient = require('redis-connection')();
+var redisServer = require('redis-server');
+var propertiesParse = require('properties-parser');
+var properties = propertiesParse.read('./config/fbbot-tr.properties');
+exports.wshost = properties['fbbot.ws.tr.host'];
+exports.wsport = properties['fbbot.ws.tr.port'];
+exports.wsmethodType = properties['fbbot.ws.tr.methodtype'];
+exports.mrktCd = properties['fbbot.common.tr.mrktCd'];
+exports.langCd = properties['fbbot.common.tr.langCd'];
+exports.devKey = properties['fbbot.ws.tr.dev.devKey'];
+var redisPort =properties['fbbot.redis.tr.redisPort'];
+var redisUrl=properties['fbbot.redis.tr.redisUrl'];
+var redisAuth_pass=properties['fbbot.redis.tr.redisAuth_pass'];
+var redisServername =properties['fbbot.redis.tr.redisServername'];
 
-//var path = require('path');
-//var updater = require( path.resolve( __dirname, "./facebookbot-tr.properties" ) ); 
-//console.log(path);
-
-//console.log(PropertiesReader);
-console.log("inside api index JS");
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./facebookbot-tr.properties'); 
-
-
-exports.wshost = properties.get('fbbot.ws.tr.host');
-exports.wsport = properties.get('fbbot.ws.tr.port');
-exports.wsmethodType = properties.get('fbbot.ws.tr.methodtype');
-exports.mrktCd = properties.get('fbbot.common.tr.mrktCd');
-exports.langCd = properties.get('fbbot.common.tr.langCd');
-exports.devKey = properties.get('fbbot.ws.tr.dev.devKey');
-
-exports.redisPort =properties.get('fbbot.redis.tr.redisPort');
-exports.redisUrl=properties.get('fbbot.redis.tr.redisUrl');
-exports.redisAuth_pass=properties.get('fbbot.redis.tr.redisAuth_pass');
-exports.redisServername =properties.get('fbbot.redis.tr.redisServername');
-
+exports.client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 
 exports.prepareWSDetails= function(type, data) {
 	
@@ -30,26 +24,26 @@ exports.prepareWSDetails= function(type, data) {
     switch (type) {
 
         case "GETITMDATA":
-            path = properties.get('fbbot.ws.getitem.path');
+            path = properties['fbbot.ws.getitem.path'];
             break;
         case "MERGEREPORDER":
-            path = properties.get('fbbot.ws.mrgreporder.tr.path');
+            path = properties['fbbot.ws.mrgreporder.tr.path'];
             break;
         case "SAVEREPORDER":
-            path = properties.get('fbbot.ws.savereporder.tr.path');
+            path = properties['fbbot.ws.savereporder.tr.path'];
             break;
 
         case "GETPENDINGITMS":
-            path = properties.get('fbbot.ws.getpendingitms.tr.path');
+            path = properties['fbbot.ws.getpendingitms.tr.path'];
             break;
         case "VERIFYFBLOGIN":
-            path = properties.get('fbbot.ws.verifylogin.tr.path');            
+            path = properties['fbbot.ws.verifylogin.tr.path'];         
             var options = {
 
-				host: properties.get('fbbot.fbgraph.host'),
-				port: properties.get('fbbot.fbgraph.port'),
+				host: properties['fbbot.ws.tr.host'],
+				port: properties['fbbot.fbgraph.port'],
 				path: path,
-				method:properties.get('fbbot.fbgraph.method'),
+				method:properties['fbbot.ws.tr.methodtype'],
 				family: 4,
 				headers: {
 					'Content-Type': 'application/json; charset=utf-8',
@@ -59,44 +53,44 @@ exports.prepareWSDetails= function(type, data) {
 			return options;
 			
         case "PRODUCTIMAGE":
-            path = properties.get('fbbot.ws.productimage.tr.path');
+            path = properties['fbbot.ws.productimage.tr.path'];
             break;
         case "GETDELIVERYADDR":
-            path = properties.get('fbbot.ws.deliveryaddr.tr.path');
+            path = properties['fbbot.ws.deliveryaddr.tr.path'];
             break;
 
         case "SUBMITREPORDER":
-            path = properties.get('fbbot.ws.submitreporder.tr.path');
+            path = properties['fbbot.ws.submitreporder.tr.path'];
             break;
         case "REPPROFILE":
-            path = properties.get('fbbot.ws.repProfile.tr.path');
+            path = properties['fbbot.ws.repProfile.tr.path'];
             break;
 
         case "VALIDATELINENRQTY":
-            path = properties.get('fbbot.ws.validatelinenrqty.path');
+            path = properties['fbbot.ws.validatelinenrqty.path'];
             break;
 
         case "MODIFYITEM":
-            path = properties.get('fbbot.ws.modifyitem.tr.path');
+            path = properties['fbbot.ws.modifyitem.tr.path'];
             break;
 
         case "DELETEREPORDER":
-            path = properties.get('fbbot.ws.deleteorder.tr.path');
+            path = properties['fbbot.ws.deleteorder.tr.path'];
             break;
         case "DELETEITEM":
-            path = properties.get('fbbot.ws.deleteitem.tr.path');
+            path = properties['fbbot.ws.deleteitem.tr.path'];
             break;
 		case "UPDATELASTDELIVADDRESS":
-			path = properties.get('fbbot.ws.updatelastdelivaddr.tr.path');
+			path = properties['fbbot.ws.updatelastdelivaddr.tr.path'];
             break;
 		case "UPDATEDEFAULTDELIVADDRESS":
-			path = properties.get('fbbot.ws.updatedefaultdelivaddr.tr.path');
+			path = properties['fbbot.ws.updatedefaultdelivaddr.tr.path'];
             break;
 		case "GETDELIVADDRESS":
-			path = properties.get('fbbot.ws.getdelivaddr.tr.path');
+			path = properties['fbbot.ws.getdelivaddr.tr.path'];
             break;
 		case "DISPLAYDELIVADDRESS":
-			path = properties.get('fbbot.ws.displaydelivaddr.tr.path');
+			path = properties['fbbot.ws.displaydelivaddr.tr.path'];
             break;
         default:
             path = "";
@@ -105,10 +99,10 @@ exports.prepareWSDetails= function(type, data) {
     }
     var options = {
 
-        host: wshost,
-        port: wsport,
+        host: properties['fbbot.ws.tr.host'],
+        port: properties['fbbot.ws.tr.port'],
         path: path,
-        method: wsmethodType,
+        method: properties['fbbot.ws.tr.methodtype'],
         family: 4,
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
