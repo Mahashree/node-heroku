@@ -12,7 +12,7 @@ http.createServer(function(req, res) {
  '\n js = d.createElement(s); js.id = id;'+
   '\njs.src = "//connect.facebook.com/en_US/messenger.Extensions.js";'+
   '\nfjs.parentNode.insertBefore(js, fjs);'+
-'\n}(document, ''script'', ''Messenger''));'+
+'\n}(document, '+'script'+', '+'Messenger'+'));'+
 
 '\n</script>\n'+
 '\n</body>'+
