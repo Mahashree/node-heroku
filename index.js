@@ -40,8 +40,8 @@ app.get('/', function (req, res) {
 	
 	
 });
-app.listen('8080', function() {
-  console.log("Node app is running at localhost:" );
+app.listen(3000 || process.env.PORT,function(){
+    console.log("up and running on port "+process.env.PORT);
 });
 /*app.post('/submit-student-data', function (req, res) {
     var name = req.body.firstName + ' ' + req.body.lastName;
