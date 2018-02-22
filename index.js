@@ -6,14 +6,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
 	
-res.set({
-  'Content-Type': 'text/plain',  
-  'X-Frame-Options': 'ALLOW-FROM https://www.messenger.com/'
-});
+
     res.sendFile(__dirname +'/'+'index.html');
 	//res.location('https://smidalms.herokuapp.com/');
 	
-  /*var options = {    
+  /*
+  res.set({
+  'Content-Type': 'text/plain',  
+  'X-Frame-Options': 'ALLOW-FROM https://www.messenger.com/'
+});
+  
+  
+  var options = {    
     headers: {
         'x-timestamp': Date.now(),
         'x-sent': true,
