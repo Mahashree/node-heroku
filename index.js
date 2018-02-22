@@ -5,6 +5,10 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
+	res.set({
+  'Content-Type': 'text/plain',  
+  'X-Frame-Options': 'ALLOW-FROM https://www.messenger.com/'
+});
     res.sendFile(__dirname +'/'+'index.html');
 });
 
