@@ -40,9 +40,10 @@ app.get('/', function (req, res) {
 	
 	
 });
-app.listen(3000 || process.env.PORT,function(){
-    console.log("up and running on port "+process.env.PORT);
+var server = app.listen(process.env.PORT || 3000, function () {
+    console.log('Node server is running***');
 });
+
 /*app.post('/submit-student-data', function (req, res) {
     var name = req.body.firstName + ' ' + req.body.lastName;
     
