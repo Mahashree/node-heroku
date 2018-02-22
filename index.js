@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function (req, res) {
 	res.set({
    
-  'X-Frame-Options': ALLOW-FROM https://guarded-bastion-64052.herokuapp.com/
+  'X-Frame-Options': ALLOW-FROM 'https://guarded-bastion-64052.herokuapp.com/'
 });
     res.sendFile(__dirname +'/'+'index.html');
 });
