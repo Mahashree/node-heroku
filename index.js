@@ -5,47 +5,15 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
-	
-
     res.sendFile(__dirname +'/'+'index.html');
-	//res.location('https://smidalms.herokuapp.com/');
-	
-  /*
-  res.set({
-  'Content-Type': 'text/plain',  
-  'X-Frame-Options': 'ALLOW-FROM https://www.messenger.com/'
-});
-  
-  
-  var options = {    
-    headers: {
-        'x-timestamp': Date.now(),
-        'x-sent': true,
-		'X-Frame-Options':'ALLOW-FROM https://www.messenger.com/'
-    }
-  };
-
-  var fileName = __dirname +'/'+'index.html';
-  res.sendFile(fileName, options, function (err) {
-    if (err) {
-      next(err);
-    } else {
-      console.log('Sent:', fileName);
-    }
-  });
-
-});*/
-	
-	
-	
-	
-});
-var server = app.listen(process.env.PORT || 3000, function () {
-    console.log('Node server is running***');
 });
 
-/*app.post('/submit-student-data', function (req, res) {
+app.post('/submit-student-data', function (req, res) {
     var name = req.body.firstName + ' ' + req.body.lastName;
     
     res.send(name + ' Submitted Successfully!');
-});*/
+});
+
+var server = app.listen(process.env.PORT || 3000, function () {
+    console.log('Node server is running***');
+});
