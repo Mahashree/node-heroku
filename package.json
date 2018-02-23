@@ -1,32 +1,27 @@
 {
-  "name": "Webview",
-  "version": "0.2.0",
-  "description": "A Node js application for form creation to select items to delete",
+  "name": "node_ejs_boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate showing the use of ejs as view template engine in a Node.js application",
+  "author": "Jennifer Bland",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.13.3",	
-	"x-frame-options":"1.0.0",
-	"ejs":"2.5.7",
-	"body-parser": "1.13.x"
-  },
-  "engines": {
-    "node": "4.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://git.heroku.com/smidalms.git"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "node.js",
+    "ejs",
     "node",
-    "heroku",
     "express",
-	"node.js",
-    "ejs"
-  ]
- 
+    "boilerplate"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/ratracegrad/nodejs_ejs_boilerplate"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  }
 }
-
-
