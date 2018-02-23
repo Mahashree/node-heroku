@@ -1,29 +1,21 @@
-'use strict';
-
-// ================================================================
-// get all the tools we need
-// ================================================================
+// load the things we need
 var express = require('express');
-var routes = require('./routes/index.js');
-var port = process.env.PORT || 3000;
-
 var app = express();
 
-// ================================================================
-// setup our express application
-// ================================================================
-app.use('/public', express.static(process.cwd() + '/public'));
+// set the view engine to ejs
 app.set('view engine', 'ejs');
 
+// use res.render to load up an ejs view file
 
-// ================================================================
-// setup routes
-// ================================================================
-routes(app);
-
-// ================================================================
-// start our server
-// ================================================================
-app.listen(port, function() {
-    console.log('Server listening on port ' + port + '...');
+// index page 
+app.get('/', function(req, res) {
+	res.render('pages/index');
 });
+
+// about page 
+app.get('/about', function(req, res) {
+	res.render('pages/about');
+});
+
+app.listen(8080);
+console.log('8080 is the magic port');
