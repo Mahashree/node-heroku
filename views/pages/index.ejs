@@ -3,25 +3,104 @@
 <head>
 	<% include ../partials/head %>
 </head>
+<style>
+html {
+  font-family: sans-serif;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+fieldset {
+  background: white;
+  border: 5px solid black;
+}
+
+legend {
+  padding: 10px;
+  background: black;
+  color: white;
+}
+</style>
+<script>
+var otherCheckbox = document.querySelector('input[value="other"]');
+var otherText = document.querySelector('input[id="otherValue"]');
+otherText.style.visibility = 'hidden';
+
+otherCheckbox.onchange = function() {
+  if(otherCheckbox.checked) {
+    otherText.style.visibility = 'visible';
+    otherText.value = '';
+  } else {
+    otherText.style.visibility = 'hidden';
+  }
+};
+</script>
 <body class="container">
 	<script>
- (function(d, s, id){
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'Messenger'));
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '190368434714859',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.12'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script>
 	<header>
 		<% include ../partials/header %>
 	</header>
 
 	<main>
-		<div class="jumbotron">
-			<h1>This is great</h1>
-			<p>Welcome to templating using EJS</p>
-		</div>
+		<form>
+
+  <legend>Choose your interests</legend>
+    <fieldset>
+    <div>
+      <input type="checkbox" id="coding" name="interest" value="coding">
+      <label for="coding">Coding</label>
+    </div>
+    <div>
+      <input type="checkbox" id="music" name="interest" value="music">
+      <label for="music">Music</label>
+    </div>
+    <div>
+      <input type="checkbox" id="art" name="interest" value="art">
+      <label for="art">Art</label>
+    </div>
+    <div>
+      <input type="checkbox" id="sports" name="interest" value="sports">
+      <label for="sports">Sports</label>
+    </div>
+    <div>
+      <input type="checkbox" id="cooking" name="interest" value="cooking">
+      <label for="cooking">Cooking</label>
+    </div>
+    <div>
+      <input type="checkbox" id="other" name="interest" value="other">
+      <label for="other">Other</label>
+      <input type="text" id="otherValue" name="other">
+    </div>
+    <div>
+      <button type="submit">Submit form</button>
+    </div>
+  </fieldset>
+</form>
+
 	</main>
 
 	<footer>
