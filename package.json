@@ -22,7 +22,9 @@
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+	"node.js",
+    "ejs"
   ]
  
 }
