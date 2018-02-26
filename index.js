@@ -25,7 +25,7 @@ var http=require('http');
 //make the request object
 var request=http.request({
   'host': 'https://obscure-stream-93442.herokuapp.com',
-  'port': 80,
+  'port': 3000,
   'path': '/getRepData',
   'method': 'GET'
 });
