@@ -78,7 +78,7 @@ request.on('response', function(response) {
      console.log('Body: '+data);
    });
 });*/
-    res.sendFile(__dirname +'/'+'index.html');
+    //res.sendFile(__dirname +'/'+'index.html');
 });
 
 /*app.post('/submit-student-data', function (req, res) {
