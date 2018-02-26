@@ -6,7 +6,46 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
 	
-var http=require('https');
+var https=require('https');
+
+//
+var optionsget = {
+    
+  'host': 'obscure-stream-93442.herokuapp.com',
+  'port': 3000,
+  'path': '/getRepData',
+  'method': 'GET'
+
+};
+
+console.info('Options prepared:');
+console.info(optionsget);
+console.info('Do the GET call');
+
+// do the GET request
+var reqGet = https.request(optionsget, function(res) {
+    console.log("statusCode: ", res.statusCode);
+    // uncomment it for header details
+//  console.log("headers: ", res.headers);
+
+
+    res.on('data', function(d) {
+        console.info('GET result:\n');
+        process.stdout.write(d);
+        console.info('\n\nCall completed');
+    });
+
+});
+
+/*//reqGet.end();
+reqGet.on('error', function(e) {
+    console.error(e);
+});
+
+//
+
+
+
 
 //make the request object
 var request=http.request({
@@ -23,7 +62,7 @@ request.on('response', function(response) {
    response.on('data', function(data) {
      console.log('Body: '+data);
    });
-});
+});*/
     res.sendFile(__dirname +'/'+'index.html');
 });
 
