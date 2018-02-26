@@ -3,8 +3,12 @@ var app = express();
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
-
+var server = app.listen(process.env.PORT || 3000, function () {
+    console.log('Node server is running***');
+});
 app.get('/', function (req, res) {
+
+
 	
 var https=require('https');
 
@@ -72,7 +76,5 @@ request.on('response', function(response) {
     res.send(name + ' Submitted Successfully!');
 });*/
 
-var server = app.listen(process.env.PORT || 3000, function () {
-    console.log('Node server is running***');
-});
+
 
