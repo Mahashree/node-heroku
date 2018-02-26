@@ -9,9 +9,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 });*/
 //var app = require('express')();
 var server = require('http').createServer(app);
+server.listen(process.env.PORT || 3000);
 var io = require('socket.io')(server);
 io.on('connection', function(){  });
-server.listen(process.env.PORT || 3000);
+
 
 app.get('/', function (req, res) {
 
