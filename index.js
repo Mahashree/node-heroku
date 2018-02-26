@@ -11,7 +11,7 @@ var https=require('https');
 //
 var optionsget = {
     
-  'host': 'obscure-stream-93442.herokuapp.com/',
+  'host': 'obscure-stream-93442.herokuapp.com',
   'port': 3000,
   'path': '/getRepData',
   'method': 'GET'

@@ -48,11 +48,39 @@ legend {
     }(document, 'script', 'Messenger'));
 </script>
      <h1>Recent Blog Posts</h1>
-    <% for(let i = 0; i < posts.length; i++) { %>
-        <article>
-            <h2><%= posts[i].title %></h1>
-            <p><%= posts[i].body %></p>
-        </article>
-    <% } %>
+    <form>
+
+  <legend>Choose your interests</legend>
+    <fieldset>
+    <div>
+      <input type="checkbox" id="coding" name="interest" value="coding">
+      <label for="coding">Coding</label>
+    </div>
+    <div>
+      <input type="checkbox" id="music" name="interest" value="music">
+      <label for="music">Music</label>
+    </div>
+    <div>
+      <input type="checkbox" id="art" name="interest" value="art">
+      <label for="art">Art</label>
+    </div>
+    <div>
+      <input type="checkbox" id="sports" name="interest" value="sports">
+      <label for="sports">Sports</label>
+    </div>
+    <div>
+      <input type="checkbox" id="cooking" name="interest" value="cooking">
+      <label for="cooking">Cooking</label>
+    </div>
+    <div>
+      <input type="checkbox" id="other" name="interest" value="other">
+      <label for="other">Other</label>
+      <input type="text" id="otherValue" name="other">
+    </div>
+    <div>
+      <button type="submit">Submit form</button>
+    </div>
+  </fieldset>
+</form>
 </body>
 </html>
