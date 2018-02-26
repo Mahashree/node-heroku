@@ -18,9 +18,9 @@ var optionsget = {
 
 };
 
-console.info('Options prepared:');
-console.info(optionsget);
-console.info('Do the GET call');
+console.log('Options prepared:');
+console.log(optionsget);
+console.log('Do the GET call');
 
 // do the GET request
 var reqGet = https.request(optionsget, function(res) {
@@ -30,9 +30,9 @@ var reqGet = https.request(optionsget, function(res) {
 
 
     res.on('data', function(d) {
-        console.info('GET result:\n');
-        process.stdout.write(d);
-        console.info('\n\nCall completed');
+        console.log('GET result:\n');
+         
+        console.log('\n\nCall completed');
     });
 
 });
