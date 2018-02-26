@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta charset="utf-8" />
+    <title> Checkbox selection</title>
+</head>
+
+<style>
+html {
+  font-family: sans-serif;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+fieldset {
+  background: white;
+  border: 5px solid black;
+}
+
+legend {
+  padding: 10px;
+  background: black;
+  color: white;
+}
+</style>
+
+<body>
+ <script type="text/javascript">
+    window.FB_PAGE_ID = '327061724299018';
+</script>
+<script>
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+</script>
+     <h1>Recent Blog Posts</h1>
+    <% for(let i = 0; i < posts.length; i++) { %>
+        <article>
+            <h2><%= posts[i].title %></h1>
+            <p><%= posts[i].body %></p>
+        </article>
+    <% } %>
+</body>
+</html>

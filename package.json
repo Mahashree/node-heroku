@@ -1,9 +1,32 @@
 {
-  "name": "node-ejs",
-  "main": "server.js",
+  "name": "smidalms",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "ejs": "^1.0.0",
-    "express": "^4.6.1",
-    "express-ejs-layouts": "^1.1.0"
-  }
+    "express": "^4.13.3",	
+	"x-frame-options":"1.0.0",
+	"ejs":"2.5.7",
+	"body-parser": "1.13.x"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/smidalms.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Mark Pundsack",
+  "contributors": [
+    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
+  ],
+  "license": "MIT"
 }
