@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /*var server = app.listen(process.env.PORT || 3000, function () {
     console.log('Node server is running***');
 });*/
-var app = require('express')();
+//var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(){  });
