@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
 	
-var https=require('https');
+var http=require('http');
 
 //
 var optionsget = {
@@ -23,7 +23,7 @@ console.log(optionsget);
 console.log('Do the GET call');
 
 // do the GET request
-var reqGet = https.request(optionsget, function(res) {
+var reqGet = http.request(optionsget, function(res) {
     console.log("statusCode: ", res.statusCode);
     // uncomment it for header details
 //  console.log("headers: ", res.headers);
