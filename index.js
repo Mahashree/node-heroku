@@ -6,12 +6,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
 	
-var http=require('http');
+var https=require('https');
 
 //
 var optionsget = {
     
-  'host': 'obscure-stream-93442.herokuapp.com',
+  'host': 'obscure-stream-93442.herokuapp.com/',
   'port': 3000,
   'path': '/getRepData',
   'method': 'GET'
@@ -23,7 +23,7 @@ console.log(optionsget);
 console.log('Do the GET call');
 
 // do the GET request
-var reqGet = http.request(optionsget, function(res) {
+var reqGet = https.request(optionsget, function(res) {
     console.log("statusCode: ", res.statusCode);
     // uncomment it for header details
 //  console.log("headers: ", res.headers);
