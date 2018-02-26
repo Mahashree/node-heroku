@@ -30,8 +30,17 @@ console.log('2');
 // Add a connect listener
 socket.on('connect', function(socket) { 
     console.log('Connected!');
+	//socket.emit('join', 'Hello World from client');
 });
+socket.on('data',function(data){
+	console.log("Received: " +data);
+	socket.destroy();
+} );
+socket.on('close',function(){
+	console.log("connection closed");
 	
+} );
+
 
 });
 
