@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(){  });
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 
 app.get('/', function (req, res) {
 
