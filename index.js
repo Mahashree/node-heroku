@@ -32,18 +32,21 @@ socket.on('connect', function(socket) {
     console.log('Connected!');
 	//socket.emit('join', 'Hello World from client');
 });
-socket.on('data',function(data){
-	console.log("Received: " +data);
-	socket.destroy();
-} );
-socket.on('close',function(){
-	console.log("connection closed");
-	
-} );
-
+socket.on("message",function(message){  
+                /*
+                    When server sends data to the client it will trigger "message" event on the client side , by 
+                    using socket.on("message") , one cna listen for the ,message event and associate a callback to 
+                    be executed . The Callback function gets the dat sent from the server 
+                */
+                console.log("Message from the server arrived")
+                message = JSON.parse(message);
+                console.log(message); /*converting the data into JS object */
+                //$('#content').append('<div >'+message.data+'</div>'); /*appending the data on the page using Jquery */
+ });
+var data ="received";
+socket.send(JSON.stringify(data)); 
 
 });
-
 /*app.post('/submit-student-data', function (req, res) {
     var name = req.body.firstName + ' ' + req.body.lastName;
     
