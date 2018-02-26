@@ -28,7 +28,8 @@ console.log('Do the GET call');
 
 // do the GET request
 var reqGet = https.request(optionsget, function(res) {
-    console.log("statusCode: ", res.statusCode);
+	console.log("statusCode");
+    console.log(res.statusCode);
     // uncomment it for header details
 //  console.log("headers: ", res.headers);
 
