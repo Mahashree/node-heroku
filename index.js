@@ -6,25 +6,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
 	
-    res.sendFile(__dirname +'/'+'index.html');
-});
-
-/*app.post('/submit-student-data', function (req, res) {
-    var name = req.body.firstName + ' ' + req.body.lastName;
-    
-    res.send(name + ' Submitted Successfully!');
-});*/
-
-var server = app.listen(process.env.PORT || 3000, function () {
-    console.log('Node server is running***');
-});
-
-
 var http=require('https');
 
 //make the request object
 var request=http.request({
-  'host': 'https://obscure-stream-93442.herokuapp.com',
+  'host': 'obscure-stream-93442.herokuapp.com',
   'port': 3000,
   'path': '/getRepData',
   'method': 'GET'
@@ -38,3 +24,16 @@ request.on('response', function(response) {
      console.log('Body: '+data);
    });
 });
+    res.sendFile(__dirname +'/'+'index.html');
+});
+
+/*app.post('/submit-student-data', function (req, res) {
+    var name = req.body.firstName + ' ' + req.body.lastName;
+    
+    res.send(name + ' Submitted Successfully!');
+});*/
+
+var server = app.listen(process.env.PORT || 3000, function () {
+    console.log('Node server is running***');
+});
+
