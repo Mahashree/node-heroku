@@ -48,9 +48,10 @@ legend {
     }(document, 'script', 'Messenger'));
 </script>
    <script>  
+	var io = require('socket.io-client');
     var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
     socket.on('connect', function(data) {
-        socket.send('join', 'Hello World from client');
+        socket.emit('join', 'Hello World from client');
     });
 </script>
 </body>
