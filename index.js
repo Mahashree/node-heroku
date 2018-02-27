@@ -30,20 +30,20 @@ var client = new Client();
 // direct way 
 client.get("https://obscure-stream-93442.herokuapp.com/getRepData", function (data, response) {
     // parsed response body as js object 
-    console.log(data);
-    
+   // console.log(data);
+     console.log("response");
     console.log(response);
 });
  
 // registering remote methods 
 client.registerMethod("jsonMethod", "https://obscure-stream-93442.herokuapp.com/getRepData", "GET");
  
-client.methods.jsonMethod(function (data, response) {
+/*client.methods.jsonMethod(function (data, response) {
       
     console.log(data);
     // raw response 
     console.log(response);
-});
+});*/
 
 });
 
