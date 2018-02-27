@@ -23,7 +23,7 @@ socket.on('connect', function(data) {
 app.get('/', function (req, res) {
 // Connect to server
 var io = require('socket.io-client')
-var socket = io.connect('obscure-stream-93442.herokuapp.com', {reconnect: true});
+var socket = io.connect('obscure-stream-93442.herokuapp.com/getRepData', {reconnect: true});
 
 console.log('2');
 
