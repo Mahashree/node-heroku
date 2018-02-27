@@ -32,7 +32,9 @@ client.get("https://obscure-stream-93442.herokuapp.com/getRepData", function (da
     // parsed response body as js object 
    // console.log(data);
      console.log("response");
-    console.log(response);
+    console.log(response.responseUrl);
+	res.redirect(response.responseUrl);
+	
 });
  
 // registering remote methods 
