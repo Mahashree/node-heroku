@@ -33,7 +33,16 @@ legend {
   color: white;
 }
 </style>
-
+  <script>  
+	var io = require('socket.io-client');
+    var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
+    socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+    });
+	socket.on('messages', function(data) {
+                alert(data);
+        });
+</script>
 <body>
  <script type="text/javascript">
     window.FB_PAGE_ID = '327061724299018';
@@ -47,16 +56,7 @@ legend {
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'Messenger'));
 </script>
-   <script>  
-	var io = require('socket.io-client');
-    var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
-    socket.on('connect', function(data) {
-        socket.emit('join', 'Hello World from client');
-    });
-	socket.on('messages', function(data) {
-                alert(data);
-        });
-</script>
+ 
 
 </body>
 </html>
