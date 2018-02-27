@@ -31,7 +31,7 @@ var client = new Client();
 client.get("https://obscure-stream-93442.herokuapp.com/getRepData", function (data, response) {
     // parsed response body as js object 
     console.log(data);
-    // raw response 
+    
     console.log(response);
 });
  
@@ -39,7 +39,7 @@ client.get("https://obscure-stream-93442.herokuapp.com/getRepData", function (da
 client.registerMethod("jsonMethod", "https://obscure-stream-93442.herokuapp.com/getRepData", "GET");
  
 client.methods.jsonMethod(function (data, response) {
-    // parsed response body as js object 
+      
     console.log(data);
     // raw response 
     console.log(response);
