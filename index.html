@@ -50,7 +50,7 @@ legend {
    <script>  
     var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
     socket.on('connect', function(data) {
-        socket.emit('join', 'Hello World from client');
+        socket.send('join', 'Hello World from client');
     });
 </script>
 </body>
