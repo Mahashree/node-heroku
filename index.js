@@ -28,7 +28,7 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
  
 // direct way 
-client.get("http://remote.site/rest/xml/method", function (data, response) {
+client.get("https://obscure-stream-93442.herokuapp.com/getRepData", function (data, response) {
     // parsed response body as js object 
     console.log(data);
     // raw response 
@@ -36,7 +36,7 @@ client.get("http://remote.site/rest/xml/method", function (data, response) {
 });
  
 // registering remote methods 
-client.registerMethod("jsonMethod", "http://remote.site/rest/json/method", "GET");
+client.registerMethod("jsonMethod", "https://obscure-stream-93442.herokuapp.com/getRepData", "GET");
  
 client.methods.jsonMethod(function (data, response) {
     // parsed response body as js object 
