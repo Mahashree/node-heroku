@@ -21,9 +21,20 @@ socket.on('connect', function(data) {
  */
 	
 app.get('/', function (req, res) {
-res.sendFile(__dirname +'/'+'index.html');
+//res.sendFile(__dirname +'/'+'index.html');
+var io = require('socket.io-client')
+var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
 
+console.log('2');
+
+socket.on('connect', function(data) {
+    socket.emit('join', 'Hello World from client');
+		});
+socket.on('messages', function(data) {
+                alert(data);
+        });
 });
+
 /*app.post('/submit-student-data', function (req, res) {
     var name = req.body.firstName + ' ' + req.body.lastName;
     
