@@ -35,15 +35,30 @@ socket.on('connect', function(data) {
  socket.on('eventemit', function(data) {
 	 console.log('5');
                 console.log(data);				
-				senderId= data.event.sender.id;
-				client.hgetall(senderId, function(err, obj) {	
-				 
-				   var redisdata=obj;
-				  console.log("redisdata from Client");
-				   console.log(redisdata);
-				   
-				   orderDetails.getPendingOrderDetails(redisdata);
+				senderId= data.event.sender.id;					
+										
+				 new Promise((resolve, reject) => {
+						console.log('Initial');
+                    
+					   client.hgetall(senderId, function(err, obj) {			
+						 if (err) {
+							// Reject the Promise with an error
+							return reject(err);
+						  }
+						  // Resolve (or fulfill) the promise with data
+						  return resolve(obj);
+						});
+						 
+				 }).then(redisInfo => {							
+						console.log('Do this');
+						 orderDetails.getPendingOrderDetails(redisInfo);
+					}).catch(() => {
+						console.log('Do that');
 					});
+					 
+					
+					
+					
 				
 				
 				

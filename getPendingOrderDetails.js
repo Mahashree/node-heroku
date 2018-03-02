@@ -3,6 +3,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		console.log("order 1");
 		console.log("redisdata In getPendingOrderDetails");
 				   console.log(redisDatas);
+				 
 		var http = require('http');
 		var options = {
 
@@ -53,11 +54,11 @@ console.log("order 3");
 			var totalQty = pendingOrderDetl.totQty;							
 			pendingItemsLen =(pendingItemsLen-(3*viewcount));*/
 			console.log(response);
-			
+			return resolve(response);
 			
 			 
 		}
-
+    
 }); 
 });
 req.write(data);
