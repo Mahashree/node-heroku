@@ -45,8 +45,8 @@ exports.getPendingOrderDetails = function (redisDatas){
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
 			console.log("order 3");		
-			/*var items = pendingOrderDetl.items;	
-			var indexBaseditemsLen = items.length;		
+			exports.items = pendingOrderDetl.items;	
+			/*var indexBaseditemsLen = items.length;		
 			var pendingItemsLen = pendingOrderDetl.totalItemCnt; 					
 			var orderedItemsImagesRedis = JSON.parse(redisDatas.itemImages);				
 			var viewcount= parseInt(redisDatas.viewMoreCount);				
@@ -69,19 +69,19 @@ exports.getPendingOrderDetails = function (redisDatas){
 			label.appendChild(checkbox);   // add the box to the element
 			label.appendChild(description);// add the description to the element
 			var div = document.createElement('div');
-			// add the label element to your div
+			 add the label element to your div
 			document.getElementById('some_div').appendChild(label);
 			 window.location.href = "./index.html";*/
 			 
 			 
-			 var jsrender = require('node-jsrender');
+			/* var jsrender = require('node-jsrender');
  
 				// Load a template from ./templates/myTemplate.html 
 				//     Contents of ./templates/myTemplate.html is: "{{:data}}" 
 				jsrender.loadFileSync('#myTemplate', './index.html');
 				jsrender.render['#myTemplate']({data: 'hello'});
 							 
-			 
+			 */
 		}
     
 }); 

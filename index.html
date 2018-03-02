@@ -45,7 +45,28 @@ socket.on('connect', function(data) {
 socket.on('messages', function(data) {
                 alert(data);
         });
-});*/
+});
+*/
+	var orderDetails=require('./getPendingOrderDetails.js');
+	var itemsToDelete = orderDetails.items;
+	
+	for(var i=0;i<itemsToDelete.length;i++){
+	console.log(itemsToDelete[i]);
+	}
+	var label= document.createElement("label");
+	var description = document.createTextNode(pair);
+	var checkbox = document.createElement("input");
+
+	checkbox.type = "checkbox";    // make the element a checkbox
+	checkbox.name = "slct[]";      // give it a name we can check on the server side
+	checkbox.value = pair;         // make its value "pair"
+
+	label.appendChild(checkbox);   // add the box to the element
+	label.appendChild(description);// add the description to the element
+	 
+	 add the label element to your div
+	document.getElementById('some_div').appendChild(label);
+
 
 </script>
 <body>
@@ -63,6 +84,7 @@ socket.on('messages', function(data) {
     }(document, 'script', 'Messenger'));
 </script>
  <div id="some_div">
+ 
  </div>
 
 </body>
