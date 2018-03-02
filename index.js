@@ -17,14 +17,17 @@ var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true}
 console.log('1');
 
 socket.on('connect', function(data) {
+	console.log('2');
     socket.on('response', function(data) {
+		console.log('3');
                 console.log(data);
         });
 	
 	});
-
-console.log('2');	
+	console.log('4');
+	
  socket.on('eventemit', function(data) {
+	 console.log('5');
                 console.log(data);
         });
 
