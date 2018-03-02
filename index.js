@@ -16,7 +16,7 @@ var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 	var orderDetails=require('./getPendingOrderDetails.js');
 app.get('/', function (req, res) {
-res.sendFile(__dirname +'/'+'index.html');
+
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
 
@@ -55,14 +55,10 @@ socket.on('connect', function(data) {
 					}).catch(() => {
 						console.log('Do that');
 					});
-					 
-					
-					
-					
-				
-				
 				
         });
+		
+	res.sendFile(__dirname +'/'+'index.html');
 });
 /*var Client = require('node-rest-client').Client;
  
