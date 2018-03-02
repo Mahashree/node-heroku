@@ -54,7 +54,6 @@ exports.getPendingOrderDetails = function (redisDatas){
 			var totalQty = pendingOrderDetl.totQty;							
 			pendingItemsLen =(pendingItemsLen-(3*viewcount));*/
 			console.log(response);
-			  
 			 
 			 /*var jsdom = require("jsdom").jsdom;
 			 var document = jsdom("hello world");
