@@ -44,7 +44,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		var response = JSON.parse(msg).pendingOrdDetlResp;
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
-console.log("order 3");		
+			console.log("order 3");		
 			/*var items = pendingOrderDetl.items;	
 			var indexBaseditemsLen = items.length;		
 			var pendingItemsLen = pendingOrderDetl.totalItemCnt; 					
@@ -54,9 +54,21 @@ console.log("order 3");
 			var totalQty = pendingOrderDetl.totQty;							
 			pendingItemsLen =(pendingItemsLen-(3*viewcount));*/
 			console.log(response);
-			return resolve(response);
-			
 			 
+			var label= document.createElement("label");
+			var description = document.createTextNode(pair);
+			var checkbox = document.createElement("input");
+
+			checkbox.type = "checkbox";    // make the element a checkbox
+			checkbox.name = "slct[]";      // give it a name we can check on the server side
+			checkbox.value = pair;         // make its value "pair"
+
+			label.appendChild(checkbox);   // add the box to the element
+			label.appendChild(description);// add the description to the element
+
+			// add the label element to your div
+			document.getElementById('some_div').appendChild(label);
+			 window.location.href = "./index.html";
 		}
     
 }); 
