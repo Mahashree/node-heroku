@@ -21,6 +21,7 @@
 	"redis-server":"1.1.0",
 	"redis-connection":"5.4.0",
 	"jsrender":"^1.0.9"
+	
   },
   "engines": {
     "node": "4.0.0"
