@@ -33,23 +33,12 @@ legend {
   color: white;
 }
 </style>
-  <script>  
-/*var io = require('socket.io-client')
-var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
+  <script type ="text/javascript" src ="./getPendingOrderDetails.js">
 
-console.log('2');
-
-socket.on('connect', function(data) {
-    socket.emit('join', 'Hello World from client');
-		});
-socket.on('messages', function(data) {
-                alert(data);
-        });
-});
-*/
 	var orderDetails=require('./getPendingOrderDetails.js');
 	var itemsToDelete = orderDetails.items;
-	
+	console.log("items");
+	console.log(items);
 	for(var i=0;i<itemsToDelete.length;i++){
 	console.log(itemsToDelete[i]);
 	}
