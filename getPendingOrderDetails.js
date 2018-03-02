@@ -53,7 +53,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 			var itemImagesLen = Object.keys(orderedItemsImagesRedis).length; 				
 			var totalQty = pendingOrderDetl.totQty;							
 			pendingItemsLen =(pendingItemsLen-(3*viewcount));*/
-			console.log(response);
+			console.log(response.items);
 			 
 			 /*var jsdom = require("jsdom").jsdom;
 			 var document = jsdom("hello world");
