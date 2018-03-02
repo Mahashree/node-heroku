@@ -8,6 +8,7 @@ var server = app.listen(process.env.PORT || 3000, function () {
     console.log('Node server is running***');
 });
 var senderId;
+var redis = require("redis");
 var redisPort =6380;
 var redisUrl= 'azupsdsstred1.redis.cache.windows.net';
 var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
