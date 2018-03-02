@@ -33,7 +33,8 @@ legend {
   color: white;
 }
 </style>
-  <script type ="text/javascript" src ="../getPendingOrderDetails.js"/>
+ <script src="/getPendingOrderDetails.js" async defer></script>
+ 
 <script>
 	/*var orderDetails=require('./getPendingOrderDetails.js');
 	var itemsToDelete = orderDetails.items;
@@ -42,6 +43,8 @@ legend {
 	for(var i=0;i<itemsToDelete.length;i++){
 	console.log(itemsToDelete[i]);
 	}*/
+	console.log("items");
+	console.log(items);
 	var label= document.createElement("label");
 	var description = document.createTextNode(pair);
 	var checkbox = document.createElement("input");
