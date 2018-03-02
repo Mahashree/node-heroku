@@ -12,7 +12,7 @@ var server = app.listen(process.env.PORT || 3000, function () {
 app.get('/', function (req, res) {
 res.sendFile(__dirname +'/'+'index.html');
 var io = require('socket.io-client');
-var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
+var socket = io.connect('obscure-stream-93442.herokuapp.com/webhook', {reconnect: true});
 
 console.log('1');
 
