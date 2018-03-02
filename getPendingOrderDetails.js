@@ -46,42 +46,10 @@ exports.getPendingOrderDetails = function (redisDatas){
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
 			console.log("order 3");		
 			exports.items = pendingOrderDetl.items;	
-			/*var indexBaseditemsLen = items.length;		
-			var pendingItemsLen = pendingOrderDetl.totalItemCnt; 					
-			var orderedItemsImagesRedis = JSON.parse(redisDatas.itemImages);				
-			var viewcount= parseInt(redisDatas.viewMoreCount);				
-			var itemImagesLen = Object.keys(orderedItemsImagesRedis).length; 				
-			var totalQty = pendingOrderDetl.totQty;							
-			pendingItemsLen =(pendingItemsLen-(3*viewcount));*/
+		
 			console.log(response.items);
 			 
-			 /*var jsdom = require("jsdom").jsdom;
-			 var document = jsdom("hello world");
-			 
-			var label= document.createElement("label");
-			var description = document.createTextNode(pair);
-			var checkbox = document.createElement("input");
-
-			checkbox.type = "checkbox";    // make the element a checkbox
-			checkbox.name = "slct[]";      // give it a name we can check on the server side
-			checkbox.value = pair;         // make its value "pair"
-
-			label.appendChild(checkbox);   // add the box to the element
-			label.appendChild(description);// add the description to the element
-			var div = document.createElement('div');
-			 add the label element to your div
-			document.getElementById('some_div').appendChild(label);
-			 window.location.href = "./index.html";*/
-			 
-			 
-			/* var jsrender = require('node-jsrender');
- 
-				// Load a template from ./templates/myTemplate.html 
-				//     Contents of ./templates/myTemplate.html is: "{{:data}}" 
-				jsrender.loadFileSync('#myTemplate', './index.html');
-				jsrender.render['#myTemplate']({data: 'hello'});
-							 
-			 */
+			
 		}
     
 }); 
