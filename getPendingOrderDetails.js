@@ -1,6 +1,6 @@
 exports.getPendingOrderDetails = function (redisDatas){
 				
-		
+		console.log("order 1");
 		var http = require('http');
 		var options = {
 
@@ -37,10 +37,11 @@ exports.getPendingOrderDetails = function (redisDatas){
 		msg += chunk;
 		});
 		res.on('end', function() {
-		  
+		  console.log("order 2");
 		var response = JSON.parse(msg).pendingOrdDetlResp;
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
-		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){			
+		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
+console.log("order 3");		
 			/*var items = pendingOrderDetl.items;	
 			var indexBaseditemsLen = items.length;		
 			var pendingItemsLen = pendingOrderDetl.totalItemCnt; 					
