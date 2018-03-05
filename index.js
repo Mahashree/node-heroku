@@ -65,19 +65,7 @@ app.get('/getPendingOrderDetails', function (req, res) {
 	var orderDetails=require('./getPendingOrderDetails.js');
 	exports.items=orderDetails.items;
 	console.log(items);
-	function addTextNode(text) {
-  var newtext = document.createTextNode(text),
-      p1 = document.getElementById("p1");
-	 var label= document.createElement("label");
-var checkbox = document.createElement("input");
-
-	checkbox.type = "checkbox";    // make the element a checkbox
-	checkbox.name = "slct[]";      // give it a name we can check on the server side
-	checkbox.value = "pair";         // make its value "pair"
-
-	checkbox.appendChild(label);   // add the box to the element
-  p1.appendChild(checkbox);
-}
+	
 	
 });
 /*var Client = require('node-rest-client').Client;
