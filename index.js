@@ -66,11 +66,21 @@ socket.on('connect', function(data) {
 	res.send(items);	
 	
 });
-app.get('/getPendingOrderDetails', function (req, res) {
-	res.sendFile(__dirname +'/'+'index.html');
-	
-	
+app.use('/getPendingOrderDetails:items', function(req, res) {        
+    var itemsToDisplay = req.params.items;
+  
 });
+app.post('/getPendingOrderDetails', function (req,res,next,itemsToDisplay) {
+	
+	req.itemsToDisplay = itemsToDisplay;
+	res.send(itemsToDisplay);
+    return next();
+	
+},function (req, res){
+	res.sendFile(__dirname +'/'+'index.html');
+	});
+	
+
 /*var Client = require('node-rest-client').Client;
  
 var client = new Client();
