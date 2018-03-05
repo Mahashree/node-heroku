@@ -33,8 +33,12 @@ legend {
   color: white;
 }
 </style>
- <script type="text/javascript" src="./getPendingOrderDetails.js"></script> 
-
+ <script type="text/javascript" src="getPendingOrderDetails.js"></script> 
+<script>
+global.window=window;
+var items = require('./getPendingOrderDetails.js');
+console.log(items);
+</script>
  
 <script>
 console.log("items");
