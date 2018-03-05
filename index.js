@@ -62,8 +62,7 @@ socket.on('connect', function(data) {
 	res.sendFile(__dirname +'/'+'index.html');
 });
 app.get('/getPendingOrderDetails', function (req, res) {
-	var orderDetails=require('./getPendingOrderDetails.js');
-	exports.items=orderDetails.items;
+	
 	console.log(items);
 	
 	
