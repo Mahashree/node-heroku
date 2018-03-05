@@ -15,11 +15,12 @@ var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 	var orderDetails=require('./getPendingOrderDetails.js');
+	var  items=orderDetails.items;
 app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
-var items;
+
 console.log('1');
 
 socket.on('connect', function(data) {
@@ -52,7 +53,7 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
-						 items=orderDetails.items;
+						
 					}).catch(() => {
 						console.log('Do that');
 					});
@@ -62,7 +63,7 @@ socket.on('connect', function(data) {
 	res.sendFile(__dirname +'/'+'index.html');
 });
 app.get('/getPendingOrderDetails', function (req, res) {
-	
+	console.log(" Inside fn items:");
 	console.log(items);
 	
 	
