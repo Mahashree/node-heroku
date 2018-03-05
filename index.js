@@ -67,7 +67,7 @@ app.get('/getPendingOrderDetails.js', function (req, res) {
 	console.log(items);
 	
 	//res.status(200).send(JSON.stringify({items}));
-	res.send(req.query);
+	res.send(items);
 	
 });
 /*var Client = require('node-rest-client').Client;
