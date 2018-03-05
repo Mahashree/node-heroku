@@ -59,15 +59,16 @@ socket.on('connect', function(data) {
 					});
 				
         });
-		
-	res.sendFile(__dirname +'/'+'index.html');
-});
-app.get('/getPendingOrderDetails.js', function (req, res) {
 	console.log(" Inside fn items:");
 	console.log(items);
 	
 	//res.status(200).send(JSON.stringify({items}));
-	res.send(items);
+	res.send(items);	
+	
+});
+app.get('/getPendingOrderDetails', function (req, res) {
+	res.sendFile(__dirname +'/'+'index.html');
+	
 	
 });
 /*var Client = require('node-rest-client').Client;
