@@ -65,7 +65,8 @@ socket.on('connect', function(data) {
 app.get('/getPendingOrderDetails.js', function (req, res) {
 	console.log(" Inside fn items:");
 	console.log(items);
-	res.json(items);
+	res.status(200).send(items);
+	
 	
 });
 /*var Client = require('node-rest-client').Client;

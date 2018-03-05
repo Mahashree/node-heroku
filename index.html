@@ -38,6 +38,15 @@ legend {
  
 <script>
 console.log("items");
+var url="https://guarded-bastion-64052.herokuapp.com/getPendingOrderDetails.js"
+fetch(url) // Call the fetch function passing the url of the API as a parameter
+.then(function(data) {
+console.log(data);   
+   // Your code for handling the data you get from the API
+})
+.catch(function() {
+   console.log(error);  // This is where you run code if the server returns any errors
+});
 //var items=<%= items %>;
 	//console.log(items);
 	/*var orderDetails=require('./getPendingOrderDetails.js');
