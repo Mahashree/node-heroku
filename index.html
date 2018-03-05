@@ -46,7 +46,7 @@ console.log("items");
 	console.log(items);
 	for(var i=0;i<itemsToDelete.length;i++){
 	console.log(itemsToDelete[i]);
-	}*/
+	}
 	
 	var label= document.createElement("label");
 	//var description = document.createTextNode("hello");
@@ -60,9 +60,14 @@ console.log("items");
 	//label.appendChild(description);// add the description to the element
 	 
 	 //add the label element to your div
-	 
-	document.getElementById('some_div').appendChild(label);
+	console.log(label);
+	document.getElementById('some_div').appendChild(label);*/
+function addTextNode(text) {
+  var newtext = document.createTextNode(text),
+      p1 = document.getElementById("p1");
 
+  p1.appendChild(newtext);
+}
 
 </script>
 <body>
@@ -79,9 +84,13 @@ console.log("items");
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'Messenger'));
 </script>
- <div id="some_div">
- <p>hello!</p>
- </div>
+ <button onclick="addTextNode('YES! ');">YES!</button>
+  <button onclick="addTextNode('NO! ');">NO!</button>
+  <button onclick="addTextNode('WE CAN! ');">WE CAN!</button>
+
+  <hr />
+
+  <p id="p1">First line of paragraph.</p>
 
 </body>
 </html>
