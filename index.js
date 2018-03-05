@@ -62,10 +62,10 @@ socket.on('connect', function(data) {
 		
 	res.sendFile(__dirname +'/'+'index.html');
 });
-app.get('/getPendingOrderDetails', function (req, res) {
+app.get('/getPendingOrderDetails.js', function (req, res) {
 	console.log(" Inside fn items:");
 	console.log(items);
-	
+	res.json(items);
 	
 });
 /*var Client = require('node-rest-client').Client;
