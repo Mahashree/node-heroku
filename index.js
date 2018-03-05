@@ -61,6 +61,11 @@ socket.on('connect', function(data) {
 		
 	res.sendFile(__dirname +'/'+'index.html');
 });
+app.get('/getPendingOrderDetails', function (req, res) {
+	var orderDetails=require('./getPendingOrderDetails.js');
+	var items=orderDetails.items;
+	res.sendFile(__dirname +'/'+'index.html');
+});
 /*var Client = require('node-rest-client').Client;
  
 var client = new Client();
