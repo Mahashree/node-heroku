@@ -3,7 +3,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		console.log("order 1");
 		console.log("redisdata In getPendingOrderDetails");
 				   console.log(redisDatas);
-				 
+		var items;		 
 		var http = require('http');
 		var options = {
 
@@ -45,7 +45,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
 			console.log("order 3");		
-			exports.items = pendingOrderDetl.items;	
+			items = pendingOrderDetl.items;	
 		
 			console.log(pendingOrderDetl.items);
 			 
