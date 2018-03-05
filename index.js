@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
-
+var items;
 console.log('1');
 
 socket.on('connect', function(data) {
@@ -52,6 +52,7 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
+						 items=orderDetails.items;
 					}).catch(() => {
 						console.log('Do that');
 					});
