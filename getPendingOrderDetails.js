@@ -1,9 +1,10 @@
+
 exports.getPendingOrderDetails = function (redisDatas){
 				
 		console.log("order 1");
 		console.log("redisdata In getPendingOrderDetails");
 				   console.log(redisDatas);
-		var items;		 
+				 
 		var http = require('http');
 		var options = {
 
