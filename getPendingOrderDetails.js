@@ -45,7 +45,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
 			console.log("order 3");	
-			items =pendingOrderDetl.items;	
+			//items =pendingOrderDetl.items;	
 			exports.items = pendingOrderDetl.items;	
 			
 			console.log(pendingOrderDetl.items);
