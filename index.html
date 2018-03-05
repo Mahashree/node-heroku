@@ -65,15 +65,15 @@ console.log("items");
 function addTextNode(text) {
   var newtext = document.createTextNode(text),
       p1 = document.getElementById("p1");
-	 var label= document.createElement("label");
+	 //var label= document.createElement("label");
 var checkbox = document.createElement("input");
 
 	checkbox.type = "checkbox";    // make the element a checkbox
 	checkbox.name = "slct[]";      // give it a name we can check on the server side
 	checkbox.value = "pair";         // make its value "pair"
 
-	label.appendChild(checkbox);   // add the box to the element
-  p1.appendChild(label);
+	//label.appendChild(checkbox);   // add the box to the element
+  p1.appendChild(checkbox);
 }
 
 </script>
