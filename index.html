@@ -39,7 +39,7 @@ legend {
 <script>
 console.log("items");
 //var items=<%= items %>;
-	console.log(items);
+	//console.log(items);
 	/*var orderDetails=require('./getPendingOrderDetails.js');
 	var itemsToDelete = orderDetails.items;
 	console.log("items");
@@ -62,19 +62,7 @@ console.log("items");
 	 //add the label element to your div
 	console.log(label);
 	document.getElementById('some_div').appendChild(label);*/
-function addTextNode(text) {
-  var newtext = document.createTextNode(text),
-      p1 = document.getElementById("p1");
-	 var label= document.createElement("label");
-var checkbox = document.createElement("input");
 
-	checkbox.type = "checkbox";    // make the element a checkbox
-	checkbox.name = "slct[]";      // give it a name we can check on the server side
-	checkbox.value = "pair";         // make its value "pair"
-
-	checkbox.appendChild(label);   // add the box to the element
-  p1.appendChild(checkbox);
-}
 
 </script>
 <body>
