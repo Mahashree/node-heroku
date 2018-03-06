@@ -15,6 +15,7 @@ var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 	var orderDetails=require('./getPendingOrderDetails.js');
+	console.log(orderDetails);
 	var  items=orderDetails.items;
 app.get('/', function (req, res) {
 
