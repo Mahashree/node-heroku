@@ -54,7 +54,14 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						 
 						console.log("=======Response pending items======");
-						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);				 
+						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
+						console.log(orderedItems);
+						 socket.on('disconnect', function() {
+							  console.log('Got disconnect!');
+
+							  //var i = allClients.indexOf(socket);
+							  //allClients.splice(i, 1);
+						   });						
 						 
 						
 					}).catch(() => {
