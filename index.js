@@ -54,9 +54,10 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
-						items=orderDetails.getPendingOrderDetails.items;
-						console.log(" Inside fn items:");
-						console.log(items);
+						//items=orderDetails.getPendingOrderDetails[0].items;
+						//console.log(" Inside fn items:");
+						console.log(orderDetails.getPendingOrderDetails[0]);
+						//console.log(orderDetails.getPendingOrderDetails[0].items);
 					}).catch(() => {
 						console.log('Do that');
 					});
@@ -64,7 +65,10 @@ socket.on('connect', function(data) {
 				
         });
 	
-	
+	io.sockets.on('disconnect', function() {
+		// handle disconnect
+		io.sockets.disconnect();
+		io.sockets.close();});
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	res.sendFile(__dirname +'/'+'index.html');
