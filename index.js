@@ -54,12 +54,13 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
-						items=orderDetails.getPendingOrderDetails.items
+						items=orderDetails.getPendingOrderDetails.items;
+						console.log(" Inside fn items:");
+						console.log(items);
 					}).catch(() => {
 						console.log('Do that');
 					});
-					console.log(" Inside fn items:");
-					console.log(items);
+					
 				
         });
 	
