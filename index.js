@@ -66,14 +66,14 @@ socket.on('connect', function(data) {
 	res.send(items);	
 	
 });
-app.use('/getPendingOrderDetails:items', function(req, res) {        
+/*app.use('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
   
-});
-app.post('/getPendingOrderDetails', function (req,res,next,itemsToDisplay) {
+});*/
+app.post('/getPendingOrderDetails', function (req,res,next) {
 	
-	req.itemsToDisplay = itemsToDisplay;
-	res.send(itemsToDisplay);
+	req.items = items;
+	//res.send(itemsToDisplay);
     return next();
 	
 },function (req, res){
