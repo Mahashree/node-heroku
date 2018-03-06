@@ -16,7 +16,8 @@ var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 	var orderDetails=require('./getPendingOrderDetails.js');
 	console.log(orderDetails.getPendingOrderDetails);
-	var  items="";
+	//var  items="";
+	console.log(orderDetails);
 app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
