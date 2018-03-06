@@ -63,13 +63,14 @@ socket.on('connect', function(data) {
 	console.log(items);
 	
 	//res.status(200).send(JSON.stringify({items}));
-	res.send(items);	
+	//res.send(items);	
+	res.sendFile(__dirname +'/'+'index.html');
 	
 });
 /*app.use('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
   
-});*/
+});
 app.post('/getPendingOrderDetails', function (req,res,next) {
 	
 	req.items = items;
@@ -78,7 +79,7 @@ app.post('/getPendingOrderDetails', function (req,res,next) {
 	
 },function (req, res){
 	res.sendFile(__dirname +'/'+'index.html');
-	});
+	});*/
 	
 
 /*var Client = require('node-rest-client').Client;
