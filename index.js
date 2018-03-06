@@ -67,11 +67,11 @@ socket.on('connect', function(data) {
 	res.sendFile(__dirname +'/'+'index.html');
 	
 });
-/*app.use('/getPendingOrderDetails:items', function(req, res) {        
+app.get('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
-  
+  res.send(itemsToDisplay);
 });
-app.post('/getPendingOrderDetails', function (req,res,next) {
+/*app.post('/getPendingOrderDetails', function (req,res,next) {
 	
 	req.items = items;
 	//res.send(itemsToDisplay);
