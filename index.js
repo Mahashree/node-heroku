@@ -14,8 +14,7 @@ var redisUrl= 'azupsdsstred1.redis.cache.windows.net';
 var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
-	var orderDetails=require('./getPendingOrderDetails.js');
-	console.log(orderDetails.getPendingOrderDetails);
+	
 	//var  items="";
 	console.log(orderDetails);
 app.get('/', function (req, res) {
@@ -53,18 +52,19 @@ socket.on('connect', function(data) {
 						});
 						 
 				 }).then(redisInfo => {							
-						console.log('Do this');
-						 orderDetails.getPendingOrderDetails(redisInfo);
+						console.log('----Do this');
+						var orderDetails=require('./getPendingOrderDetails.js');
 						console.log("orderDetails.items:");
 						console.log(orderDetails.items);
+						 //orderDetails.getPendingOrderDetails(redisInfo);
+						//console.log("orderDetails.items:");
+						//console.log(orderDetails.getPendingOrderDetails.items);
 						
 					}).catch(() => {
 						console.log('Do that');
 					});
 				
-        });
-	
-	
+ });
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	res.sendFile(__dirname +'/'+'index.html');
@@ -73,10 +73,10 @@ socket.on('connect', function(data) {
 		io.sockets.disconnect();
 		io.sockets.close();});*/
 });
-app.post('/getPendingOrderDetails:items', function(req, res) {        
+/*app.post('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
   res.send(itemsToDisplay);
-});
+});*/
 /*app.post('/getPendingOrderDetails', function (req,res,next) {
 	
 	req.items = items;
