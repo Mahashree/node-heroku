@@ -63,15 +63,15 @@ socket.on('connect', function(data) {
 					});
 				
         });
-	io.sockets.on('disconnect', function() {
-		// handle disconnect
-		io.sockets.disconnect();
-		io.sockets.close();});
+	
 	
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	res.sendFile(__dirname +'/'+'index.html');
-	
+	/*io.sockets.on('disconnect', function() {
+		// handle disconnect
+		io.sockets.disconnect();
+		io.sockets.close();});*/
 });
 app.post('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
