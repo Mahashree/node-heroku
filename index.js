@@ -20,7 +20,7 @@ var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, 
 app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
-var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
+var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: false});
 
 console.log('1');
 
@@ -54,10 +54,9 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
-						//items=orderDetails.getPendingOrderDetails[0].items;
-						//console.log(" Inside fn items:");
-						console.log(orderDetails.getPendingOrderDetails[0]);
-						//console.log(orderDetails.getPendingOrderDetails[0].items);
+						console.log("orderDetails.items:");
+						console.log(orderDetails.items);
+						
 					}).catch(() => {
 						console.log('Do that');
 					});
