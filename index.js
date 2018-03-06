@@ -15,8 +15,8 @@ var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 var orderDetails=require('./getPendingOrderDetails.js');
-						console.log("***orderDetails");
-						console.log(orderDetails);	
+var orderedItems=[];
+						//console.log(orderDetails);	
 	//var  items="";
 	//console.log(orderDetails);
 app.get('/', function (req, res) {
@@ -56,9 +56,11 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('----Do this');
 						
-						 //orderDetails.getPendingOrderDetails(redisInfo);
-						//console.log("orderDetails.items:");
-						//console.log(orderDetails.getPendingOrderDetails.items);
+						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
+						  
+						console.log("***orderedItems");
+						console.log(orderedItems);
+						 
 						
 					}).catch(() => {
 						console.log('Do that');

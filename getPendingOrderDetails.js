@@ -53,7 +53,8 @@ exports.getPendingOrderDetails = function (redisDatas){
 			//items =pendingOrderDetl.items;
 			
 			items = pendingOrderDetl.items;	
-			console.log(pendingOrderDetl.items);
+		   return items;
+//		console.log(pendingOrderDetl.items);
 			
 			 
 			
@@ -63,5 +64,5 @@ exports.getPendingOrderDetails = function (redisDatas){
 });
 req.write(data);
 req.end(); 
-module.exports.items=items;
+//module.exports.items=items;
 }
