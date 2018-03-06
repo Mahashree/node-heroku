@@ -61,7 +61,6 @@ socket.on('connect', function(data) {
 					}).catch(() => {
 						console.log('Do that');
 					});
-					
 				
         });
 	
