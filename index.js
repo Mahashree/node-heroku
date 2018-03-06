@@ -67,7 +67,7 @@ socket.on('connect', function(data) {
 	res.sendFile(__dirname +'/'+'index.html');
 	
 });
-app.get('/getPendingOrderDetails:items', function(req, res) {        
+app.post('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
   res.send(itemsToDisplay);
 });
