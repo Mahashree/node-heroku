@@ -16,7 +16,7 @@ var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 	var orderDetails=require('./getPendingOrderDetails.js');
 	console.log(orderDetails.getPendingOrderDetails);
-	var  items=orderDetails.getPendingOrderDetails.items;
+	var  items="";
 app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
@@ -54,14 +54,15 @@ socket.on('connect', function(data) {
 				 }).then(redisInfo => {							
 						console.log('Do this');
 						 orderDetails.getPendingOrderDetails(redisInfo);
-						
+						items=orderDetails.getPendingOrderDetails.items
 					}).catch(() => {
 						console.log('Do that');
 					});
+					console.log(" Inside fn items:");
+					console.log(items);
 				
         });
-	console.log(" Inside fn items:");
-	console.log(items);
+	
 	
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
