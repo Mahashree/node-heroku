@@ -1,9 +1,8 @@
 
 exports.getPendingOrderDetails = function (redisDatas){
 				
-		console.log("order 1");
-		console.log("redisdata In getPendingOrderDetails");
-				   console.log(redisDatas);
+		console.log("======Inside Get Pending Items=======");
+		 
 		var items="";		 
 		var http = require('http');
 		var options = {
@@ -40,12 +39,8 @@ exports.getPendingOrderDetails = function (redisDatas){
 		res.on('data', function(chunk) {
 		msg += chunk;
 		});
-		res.on('end', function() {
-		  console.log("order 2");
-		   console.log("JSON.parse(msg)");
-		   console.log(JSON.parse(msg));
-		   console.log("JSON.parse(msg).pendingOrdDetlResp");
-		    console.log(JSON.parse(msg).pendingOrdDetlResp);
+		res.on('end', function() {		   
+		    
 		var response = JSON.parse(msg).pendingOrdDetlResp;
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	

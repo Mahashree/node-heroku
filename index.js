@@ -23,14 +23,12 @@ app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: false});
-
-console.log('1');
+ 
 
 socket.on('connect', function(data) {
-	console.log('2');
+	 
     socket.on('response', function(data) {
-		console.log('3');
-                console.log(data);
+		 console.log("======Inside Socket Response=======");
         });
 	
 	});
@@ -54,12 +52,9 @@ socket.on('connect', function(data) {
 						});
 						 
 				 }).then(redisInfo => {							
-						console.log('----Do this');
-						
-						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
-						  
-						console.log("***orderedItems");
-						console.log(orderedItems);
+						 
+						console.log("=======Response pending items======");
+						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);				 
 						 
 						
 					}).catch(() => {
