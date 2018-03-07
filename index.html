@@ -37,17 +37,18 @@
             }*/
 			alert(globPsid);
 			var senderId=document.getElementById('myField').value;
-			var url = 'https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId';
-			var data = {"senderId": senderId};
-
-			fetch(url, {
-				method: 'POST', // or 'PUT'
-				body: JSON.stringify(data), 
-				headers: new Headers({
-				'Content-Type': 'application/json'
+		
+			post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
+			
+			fetch('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId') // Call the fetch function passing the url of the API as a parameter
+			.then(function(data) {
+			console.log(data);
+			// Your code for handling the data you get from the API
 			})
-			}).then(res => console.log('Fetch response:');console.log(res);res.json();).catch(error => console.error('Error:', error)).then(response => console.log('Success:', response));
-			//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
+			.catch(function() {
+			console.log("Error");
+			// This is where you run code if the server returns any errors
+			});
             MessengerExtensions.requestCloseBrowser(function success() {
 
             }, function error(err) {
