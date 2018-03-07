@@ -40,7 +40,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 		msg += chunk;
 		});
 		res.on('end', function() {		   
-		    
+		 console.log(JSON.parse(msg));    
 		var response = JSON.parse(msg).pendingOrdDetlResp;
 		var pendingOrderDetl = response.repPendingOrdDetl[0];
 		if(response!=='undefined' && response.success && pendingOrderDetl.hasOwnProperty("items")&& pendingOrderDetl.items.length > 0){	
