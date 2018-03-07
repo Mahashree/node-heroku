@@ -20,8 +20,11 @@ var orderedCartItems=[];
 app.get('/', function (req, res) {
 var fs = require('fs'); //Filesystem    
 var path = __dirname +'/'+'index.html';
-var content = fs.readFileSync(path,"utf-8");
-console.log(content);
+var $ = require('jQuery');
+var hv = $('#myField').val();
+ 
+//var content = fs.readFileSync(path,"utf-8");
+console.log("Hidden value --- "+hv);
 /*
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {forceNew: true });
