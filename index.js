@@ -56,16 +56,7 @@ socket.on('connect', function(data) {
 					//orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
 					console.log(orderedItems);
 					orderedCartItems=orderedItems;
-					var socketlist = [];
-					socket.on('close', function () {
-					console.log('socket closed');
-					socketlist.splice(socketlist.indexOf(socket), 1);
-					});
-
-					socketlist.forEach(function(socket) {
-					socket.destroy();
 					
-					});
 				
 				}).catch(err => {
 					console.log("Error");
