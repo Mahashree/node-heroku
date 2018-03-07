@@ -18,6 +18,10 @@ var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, 
 var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
+var fs = require('fs'); //Filesystem    
+var path = __dirname +'/'+'index.html';
+var content = fs.readFileSync(path,"utf-8");
+console.log(content);
 /*
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {forceNew: true });
