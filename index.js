@@ -82,13 +82,11 @@ getOrderItems (senderId,orderDetails,orderedCartItems);
 res.sendFile(__dirname +'/'+'index.html');
 });
 	
-app.post('/sendOnWebviewSenderId', (req, res) => {
-	console.log("Request------------->");
-	console.log(req.body);
+app.post('/sendOnWebviewSenderId', (req, res) => {	
   var psid = req.body.senderId;
-  console.log('Guard sender id from html');
+  console.log('----Guard sender id from html');
    console.log(psid);
-   getOrderItems (psid,orderDetails);	
+   //getOrderItems (psid,orderDetails);	
   //sendMessage(psid);
 });	
 
