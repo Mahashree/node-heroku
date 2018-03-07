@@ -14,7 +14,7 @@ var redisUrl= 'azupsdsstred1.redis.cache.windows.net';
 var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
-//var orderDetails=require('./getPendingOrderDetails.js');
+var orderDetails=require('./getPendingOrderDetails.js');
 var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
@@ -86,6 +86,37 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
   var psid = req.body.senderId;
   console.log('Guard sender id from html');
    console.log(psid);
+   getOrderItems (psid,orderDetails,orderedCartItems);		
+	
+	function getOrderItems (senderId,orderDetails,orderedCartItems){
+	new Promise((resolve, reject) => {
+				console.log('Initial');
+			
+			   client.hgetall(senderId, function(err, obj) {			
+				 if (err) {
+					// Reject the Promise with an error
+					return reject(err);
+				  }
+				  // Resolve (or fulfill) the promise with data
+				  return resolve(obj);
+				});
+				 
+		 }).then(redisInfo => {							
+				 
+				console.log("=======Response pending items======");
+				orderDetails.getPendingOrderDetails(redisInfo).then(orderedItems => {	
+					//orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
+					console.log(orderedItems);
+					orderedCartItems=orderedItems;
+					
+				
+				}).catch(err => {
+					console.log("Error");
+					console.log(err);
+					});
+		 });
+	}
+   
   //sendMessage(psid);
 });	
 	
