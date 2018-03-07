@@ -88,7 +88,7 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
   var psid = req.body.senderId;
   console.log('Guard sender id from html');
    console.log(psid);
-   getOrderItems (psid,orderDetails,orderedCartItems);	
+   getOrderItems (psid,orderDetails);	
   //sendMessage(psid);
 });	
 
@@ -98,7 +98,7 @@ app.get('/webviewSenderId', (req, res) =>{
    res.send(orderedCartItems);	
 });
 
-function getOrderItems (senderId,orderDetails,orderedCartItems){
+function getOrderItems (senderId,orderDetails){
 	new Promise((resolve, reject) => {
 				console.log('Initial');
 			
@@ -117,7 +117,7 @@ function getOrderItems (senderId,orderDetails,orderedCartItems){
 				orderDetails.getPendingOrderDetails(redisInfo).then(orderedItems => {	
 					//orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
 					console.log("orderedItems");
-					orderedCartItems=orderedItems;
+					return orderedItems;
 					
 				
 				}).catch(err => {
@@ -125,7 +125,7 @@ function getOrderItems (senderId,orderDetails,orderedCartItems){
 					console.log(err);
 					});
 		 });
-	}	
+}	
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	
