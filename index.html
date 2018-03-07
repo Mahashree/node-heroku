@@ -37,15 +37,16 @@
             }*/
 			alert(globPsid);
 			var senderId=document.getElementById('myField').value;
-			//
-			postData('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId})
-			.then(data => 
-			console.log("Items received");
-			console.log(data);) // JSON from `response.json()` call
-			.catch(error => console.error(error));
+			var url = 'https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId';
+			var data = {"senderId": senderId};
 
-
-			//
+			fetch(url, {
+				method: 'POST', // or 'PUT'
+				body: JSON.stringify(data), 
+				headers: new Headers({
+				'Content-Type': 'application/json'
+			})
+			}).then(res => res.json()).catch(error => console.error('Error:', error)).then(response => console.log('Success:', response));
 			//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
             MessengerExtensions.requestCloseBrowser(function success() {
 
@@ -90,22 +91,7 @@
     });
 };
 
-	function postData(url, data) {
-  // Default options are marked with *
-  return fetch(url, {
-    body: JSON.stringify(data), // must match 'Content-Type' header
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-     // include, *omit
-    headers: {      
-      'content-type': 'application/json'
-    },
-    method: 'POST', // *GET, PUT, DELETE, etc.
-    //mode: 'cors', // no-cors, *same-origin
-    redirect: 'follow', // *manual, error
-    referrer: 'no-referrer', // *client
-  })
-  .then(response => response.json()) // parses response to JSON
-}
+
 
 	function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
