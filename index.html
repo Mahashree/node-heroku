@@ -18,117 +18,37 @@
     </style>
 
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
- <input type="hidden" id="myField" value="" />
+	<input type="hidden" id="myField" value="" />
     <script type="text/javascript">
 	var globPsid="";
-        function sendMessage() {
-		console.log("**********inside send message");
-           // alert('Booking completed. What to do now? How to send the message back to bot?')
-            /// how to return? the facebook docs don't say anything
-            /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
-           /* return {
-                text: "HOTEL_SERVICE_PAYLOAD",
-                attachments: [
-                    {
-                        email: "some@email.com",
-                        hotelName: "Hotel marriott",
-                        confirmNumber: "1234567"
-                    }
-                ]
-            }*/
-			
-			var senderId=document.getElementById('myField').value;
-			console.log("**********globPsid---"+globPsid);
-			console.log(senderId);
-		   loadDoc();
-			//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
-			 
-			
+	(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "Messenger"));		 
+		
+	window.extAsyncInit = function () {
+    // the Messenger Extensions JS SDK is done loading
+    MessengerExtensions.getUserID(function success(uids) {
+        var psid = uids.psid;//This is your page scoped sender_id
+		 console.log("---window.extAsyncInit  psid "+psid); 
+		 
+		 //document.getElementById('myField').value = psid;
+		 
+    }, function error(err) {
+        alert("Messenger Extension Error: " + err);
+    });
+};	
+	  function sendMessage() {
+		console.log("**********inside send message");			
             MessengerExtensions.requestCloseBrowser(function success() {
 
             }, function error(err) {
 
             });
         }
-
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, "script", "Messenger"));
-
-        
-		
-		/*window.extAsyncInit = function () {
-            // the Messenger Extensions JS SDK is done loading
-            MessengerExtensions.getUserID(function success(uids) {
-                var psid = uids.psid;//This is your page scoped sender_id
-                alert("Getting PSID")
-                alert("This is the user's psid " + psid);
-            }, function error(err) {
-                alert("Messenger Extension Error: " + err);
-            });
-        };*/
-		
-	window.extAsyncInit = function () {
-    // the Messenger Extensions JS SDK is done loading
-    MessengerExtensions.getUserID(function success(uids) {
-        var psid = uids.psid;//This is your page scoped sender_id
-		 console.log("---window.extAsyncInit  psid "+psid);
-		 globPsid=psid;
-		 
-		 document.getElementById('myField').value = psid;
-		// var $ = require('jQuery');
-       // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		//post('https://obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
-    }, function error(err) {
-        alert("Messenger Extension Error: " + err);
-    });
-};
-	
-	function loadDoc() {
-	console.log("-----loadDoc-");
-		var url = "https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId";
-		var params = "senderID=globPsid";
-		var http = new XMLHttpRequest();
-
-		http.open("GET", url+"?"+params, true);
-		http.onreadystatechange = function()
-		{
-			if(http.readyState == 4 && http.status == 200) {
-				console.log(http.responseText);
-			}
-		}
-	
-	}
-	
-	 
-	
-	function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-}
 	
     </script>
 </body>
