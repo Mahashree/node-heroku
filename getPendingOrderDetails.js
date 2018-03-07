@@ -3,7 +3,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 				
 		console.log("======Inside Get Pending Items=======");
 		 
-		var items="";		 
+		//var items="";		 
 		var http = require('http');
 		var options = {
 
@@ -47,7 +47,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 			console.log("order 3");	
 			//items =pendingOrderDetl.items;
 			
-			items = pendingOrderDetl.items;	
+			var items = pendingOrderDetl.items;	
 		   return items;
 //		console.log(pendingOrderDetl.items);
 			
