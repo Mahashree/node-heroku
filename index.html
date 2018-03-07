@@ -18,7 +18,7 @@
     </style>
 
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
-
+ <input type="hidden" id="myField" value="" />
     <script type="text/javascript">
 	
         function sendMessage() {
@@ -68,7 +68,7 @@
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
 		 alert("Heroku calling");
-		 
+		 document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
 		post('https://obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
