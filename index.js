@@ -16,13 +16,11 @@ var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 var orderDetails=require('./getPendingOrderDetails.js');
 var orderedItems=[];
-						//console.log(orderDetails);	
-	//var  items="";
-	//console.log(orderDetails);
+						
 app.get('/', function (req, res) {
 
 var io = require('socket.io-client');
-var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: false});
+var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
  
 
 socket.on('connect', function(data) {
@@ -56,8 +54,8 @@ socket.on('connect', function(data) {
 						console.log("=======Response pending items======");
 						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
 						console.log(orderedItems);
-						 socket.on('disconnect', function() {
-							  console.log('Got disconnect!');
+						 //socket.on('disconnect', function() {
+							//  console.log('Got disconnect!');
 
 							  //var i = allClients.indexOf(socket);
 							  //allClients.splice(i, 1);
@@ -69,6 +67,15 @@ socket.on('connect', function(data) {
 					});
 				
  });
+var socketlist = [];
+    socket.on('close', function () {
+      console.log('socket closed');
+      socketlist.splice(socketlist.indexOf(socket), 1);
+    });
+
+socketlist.forEach(function(socket) {
+  socket.destroy();
+});
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	res.sendFile(__dirname +'/'+'index.html');
