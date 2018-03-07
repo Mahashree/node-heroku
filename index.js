@@ -92,7 +92,7 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
   //sendMessage(psid);
 });	
 
-app.get('/sendOnWebviewSenderId', (req, res) =>{
+app.get('/webviewSenderId', (req, res) =>{
 	
 	console.log(orderedCartItems);
    res.send(orderedCartItems);	
