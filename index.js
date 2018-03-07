@@ -15,7 +15,7 @@ var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
 var orderDetails=require('./getPendingOrderDetails.js');
-var orderedItems=[];
+var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
 
@@ -52,8 +52,25 @@ socket.on('connect', function(data) {
 		 }).then(redisInfo => {							
 				 
 				console.log("=======Response pending items======");
-				orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
-				console.log(orderedItems);
+				orderDetails.getPendingOrderDetails(redisInfo).then(orderedItems => {	
+					//orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
+					console.log(orderedItems);
+					orderedCartItems=orderedItems;
+					var socketlist = [];
+					socket.on('close', function () {
+					console.log('socket closed');
+					socketlist.splice(socketlist.indexOf(socket), 1);
+					});
+
+					socketlist.forEach(function(socket) {
+					socket.destroy();
+					
+					});
+				
+				}).catch(err => {
+					console.log("Error");
+					console.log(err);
+					});
 				 //socket.on('disconnect', function() {
 					//  console.log('Got disconnect!');
 
@@ -65,16 +82,7 @@ socket.on('connect', function(data) {
 	}).catch(() => {
 		console.log('Do that');
 	});
-	var socketlist = [];
-    socket.on('close', function () {
-      console.log('socket closed');
-      socketlist.splice(socketlist.indexOf(socket), 1);
-    });
-
-	socketlist.forEach(function(socket) {
-	socket.destroy();
-				
-	});
+	
 res.sendFile(__dirname +'/'+'index.html');
 });
 	//res.status(200).send(JSON.stringify({items}));
