@@ -68,9 +68,9 @@
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
 		 alert("Heroku calling");
-		 var $ = require('jQuery');
-        $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		//post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
+		// var $ = require('jQuery');
+       // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
+		post('https://obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
