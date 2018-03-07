@@ -34,56 +34,57 @@ socket.on('connect', function(data) {
 	
  socket.on('eventemit', function(data) {
 	 console.log('5');
-                console.log(data);				
-				senderId= data.event.sender.id;					
-										
-				 new Promise((resolve, reject) => {
-						console.log('Initial');
-                    
-					   client.hgetall(senderId, function(err, obj) {			
-						 if (err) {
-							// Reject the Promise with an error
-							return reject(err);
-						  }
-						  // Resolve (or fulfill) the promise with data
-						  return resolve(obj);
-						});
-						 
-				 }).then(redisInfo => {							
-						 
-						console.log("=======Response pending items======");
-						orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
-						console.log(orderedItems);
-						 //socket.on('disconnect', function() {
-							//  console.log('Got disconnect!');
+		console.log(data);				
+		senderId= data.event.sender.id;					
+								
+		 new Promise((resolve, reject) => {
+				console.log('Initial');
+			
+			   client.hgetall(senderId, function(err, obj) {			
+				 if (err) {
+					// Reject the Promise with an error
+					return reject(err);
+				  }
+				  // Resolve (or fulfill) the promise with data
+				  return resolve(obj);
+				});
+				 
+		 }).then(redisInfo => {							
+				 
+				console.log("=======Response pending items======");
+				orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
+				console.log(orderedItems);
+				 //socket.on('disconnect', function() {
+					//  console.log('Got disconnect!');
 
-							  //var i = allClients.indexOf(socket);
-							  //allClients.splice(i, 1);
-						   });						
-						 
+					  //var i = allClients.indexOf(socket);
+					  //allClients.splice(i, 1);
+				   });						
+				 
 						
-					}).catch(() => {
-						console.log('Do that');
-					});
-				
- });
-var socketlist = [];
+	}).catch(() => {
+		console.log('Do that');
+	});
+	var socketlist = [];
     socket.on('close', function () {
       console.log('socket closed');
       socketlist.splice(socketlist.indexOf(socket), 1);
     });
 
-socketlist.forEach(function(socket) {
-  socket.destroy();
+	socketlist.forEach(function(socket) {
+	socket.destroy();
+				
+	});
+res.sendFile(__dirname +'/'+'index.html');
 });
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
-	res.sendFile(__dirname +'/'+'index.html');
+	
 	/*io.sockets.on('disconnect', function() {
 		// handle disconnect
 		io.sockets.disconnect();
 		io.sockets.close();});*/
-});
+//});
 /*app.post('/getPendingOrderDetails:items', function(req, res) {        
     var itemsToDisplay = req.params.items;
   res.send(itemsToDisplay);
