@@ -42,7 +42,7 @@ socket.on('connect', function(data) {
 	}).catch(() => {
 		console.log('Do that');
 	});
-	getOrderItems (senderId,orderDetails);
+	getOrderItems (senderId,orderDetails,orderedCartItems);
 	
 	function getOrderItems (senderId,orderDetails,orderedCartItems){
 	new Promise((resolve, reject) => {
