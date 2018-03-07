@@ -106,7 +106,7 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
 				console.log("=======Response pending items======");
 				orderDetails.getPendingOrderDetails(redisInfo).then(orderedItems => {	
 					//orderedItems=orderDetails.getPendingOrderDetails(redisInfo);
-					console.log(orderedItems);
+					console.log("orderedItems");
 					orderedCartItems=orderedItems;
 					
 				
@@ -116,6 +116,7 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
 					});
 		 });
 	}
+	console.log(orderedCartItems);
    res.send(orderedCartItems);
   //sendMessage(psid);
 });	

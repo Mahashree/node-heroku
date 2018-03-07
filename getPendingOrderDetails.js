@@ -48,7 +48,7 @@ exports.getPendingOrderDetails = function (redisDatas){
 			//items =pendingOrderDetl.items;
 			
 			var items = pendingOrderDetl.items;	
-			console.log(items);
+			//console.log(items);
 		   return items;
 //		
 			
