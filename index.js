@@ -14,13 +14,13 @@ var redisUrl= 'azupsdsstred1.redis.cache.windows.net';
 var redisAuth_pass='Ze6sjIhQGTl96rbe+mA3O3hbrskbRdlmpNUIbczv1Oo=';
 var redisServername = 'azupsdsstred1.redis.cache.windows.net';
 var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, tls: {servername: redisServername}});
-var orderDetails=require('./getPendingOrderDetails.js');
+//var orderDetails=require('./getPendingOrderDetails.js');
 var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
-
+/*
 var io = require('socket.io-client');
-var socket = io.connect('obscure-stream-93442.herokuapp.com/', {reconnect: true});
+var socket = io.connect('obscure-stream-93442.herokuapp.com/', {forceNew: true });
  
 
 socket.on('connect', function(data) {
@@ -36,13 +36,13 @@ socket.on('connect', function(data) {
 	 console.log('5');
 		console.log(data);				
 		senderId= data.event.sender.id;					
-		getOrderItems (senderId,orderDetails,orderedCartItems);					
+						
 				 
 						
 	}).catch(() => {
 		console.log('Do that');
 	});
-	
+getOrderItems (senderId,orderDetails,orderedCartItems);		
 	
 	function getOrderItems (senderId,orderDetails,orderedCartItems){
 	new Promise((resolve, reject) => {
@@ -71,7 +71,7 @@ socket.on('connect', function(data) {
 					console.log(err);
 					});
 		 });
-	}
+	}*/
 res.sendFile(__dirname +'/'+'index.html');
 });
 	//res.status(200).send(JSON.stringify({items}));

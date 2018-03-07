@@ -1,112 +1,102 @@
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-
-<head>
-    <meta charset="utf-8" />
-    <title> Checkbox selection</title>
-</head>
-
-<style>
-html {
-  font-family: sans-serif;
-}
-
-form {
-  width: 600px;
-  margin: 0 auto;
-}
-
-div {
-  margin-bottom: 10px;
-}
-
-fieldset {
-  background: white;
-  border: 5px solid black;
-}
-
-legend {
-  padding: 10px;
-  background: black;
-  color: white;
-}
-</style>
- <script type="text/javascript" src="getPendingOrderDetails"></script> 
-
- 
-<script>
-console.log("items");
-var url="https://guarded-bastion-64052.herokuapp.com/getPendingOrderDetails"
-fetch(url) // Call the fetch function passing the url of the API as a parameter
-.then(function(data) {
-console.log(data);   
-   // Your code for handling the data you get from the API
-})
-.catch(function() {
-   console.log(error);  // This is where you run code if the server returns any errors
-});
-//var items=<%= items %>;
-	//console.log(items);
-	/*var orderDetails=require('./getPendingOrderDetails.js');
-	var itemsToDelete = orderDetails.items;
-	console.log("items");
-	console.log(items);
-	for(var i=0;i<itemsToDelete.length;i++){
-	console.log(itemsToDelete[i]);
-	}
-	
-	var label= document.createElement("label");
-	//var description = document.createTextNode("hello");
-	var checkbox = document.createElement("input");
-
-	checkbox.type = "checkbox";    // make the element a checkbox
-	checkbox.name = "slct[]";      // give it a name we can check on the server side
-	checkbox.value = "pair";         // make its value "pair"
-
-	label.appendChild(checkbox);   // add the box to the element
-	//label.appendChild(description);// add the description to the element
-	 
-	 //add the label element to your div
-	console.log(label);
-	document.getElementById('some_div').appendChild(label);*/
-function addTextNode(text) {
-  var newtext = document.createTextNode(text),
-      p1 = document.getElementById("p1");
-	 var label= document.createElement("label");
-var checkbox = document.createElement("input");
-
-	checkbox.type = "checkbox";    // make the element a checkbox
-	checkbox.name = "slct[]";      // give it a name we can check on the server side
-	checkbox.value = "pair";         // make its value "pair"
-
-	checkbox.appendChild(label);   // add the box to the element
-  p1.appendChild(checkbox);
-}
-
-</script>
+<html>
 <body>
- <script type="text/javascript">
-    window.FB_PAGE_ID = '327061724299018';
-</script>
+    <style type="text/css">
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            width: 50%;
+            margin: 25%;
+        }
+    </style>
 
-<script>
-    (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'Messenger'));
-</script>
- <button onclick="addTextNode('YES! ');">YES!</button>
-  <button onclick="addTextNode('NO! ');">NO!</button>
-  <button onclick="addTextNode('WE CAN! ');">WE CAN!</button>
+    <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
 
-  <hr />
+    <script type="text/javascript">
+        function sendMessage() {
+            alert('Booking completed. What to do now? How to send the message back to bot?')
+            /// how to return? the facebook docs don't say anything
+            /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
+            return {
+                text: "HOTEL_SERVICE_PAYLOAD",
+                attachments: [
+                    {
+                        email: "some@email.com",
+                        hotelName: "Hotel marriott",
+                        confirmNumber: "1234567"
+                    }
+                ]
+            }
+            MessengerExtensions.requestCloseBrowser(function success() {
 
-  <div id="p1">First line of paragraph.</div>
+            }, function error(err) {
 
+            });
+        }
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "Messenger"));
+
+        
+		
+		/*window.extAsyncInit = function () {
+            // the Messenger Extensions JS SDK is done loading
+            MessengerExtensions.getUserID(function success(uids) {
+                var psid = uids.psid;//This is your page scoped sender_id
+                alert("Getting PSID")
+                alert("This is the user's psid " + psid);
+            }, function error(err) {
+                alert("Messenger Extension Error: " + err);
+            });
+        };*/
+		
+	window.extAsyncInit = function () {
+    // the Messenger Extensions JS SDK is done loading
+    MessengerExtensions.getUserID(function success(uids) {
+        var psid = uids.psid;//This is your page scoped sender_id
+        //$.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
+		post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
+    }, function error(err) {
+        alert("Messenger Extension Error: " + err);
+    });
+};
+		
+		function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+		
+    </script>
 </body>
 </html>
