@@ -28,8 +28,8 @@ exports.getPendingOrderDetails = function (redisDatas){
 			 version : "4",
 			 orderIdList : redisDatas.orderId,
 			 perfrmGomacValidation : false,
-			 startIndex :1,
-			 endIndex :9999
+			 startIndex :"1",
+			 endIndex :"9999"
 		}
 		});
 		
