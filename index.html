@@ -76,8 +76,9 @@
     // the Messenger Extensions JS SDK is done loading
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
+		 console.log("---window.extAsyncInit  psid "+psid);
 		 globPsid=psid;
-		 alert("Heroku calling "+globPsid);
+		 
 		 document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
