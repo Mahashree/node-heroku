@@ -36,13 +36,13 @@ socket.on('connect', function(data) {
 	 console.log('5');
 		console.log(data);				
 		senderId= data.event.sender.id;					
-		socket.on('disconnect', function() {
-					 console.log('Got disconnect!');
-
-					  var i = allClients.indexOf(socket);
-					  allClients.splice(i, 1);
-				   });						
-		 new Promise((resolve, reject) => {
+							
+				 
+						
+	}).catch(() => {
+		console.log('Do that');
+	});
+	new Promise((resolve, reject) => {
 				console.log('Initial');
 			
 			   client.hgetall(senderId, function(err, obj) {			
@@ -67,18 +67,7 @@ socket.on('connect', function(data) {
 					console.log("Error");
 					console.log(err);
 					});
-				 //socket.on('disconnect', function() {
-					//  console.log('Got disconnect!');
-
-					  //var i = allClients.indexOf(socket);
-					  //allClients.splice(i, 1);
-				   });						
-				 
-						
-	}).catch(() => {
-		console.log('Do that');
-	});
-	
+		 });
 res.sendFile(__dirname +'/'+'index.html');
 });
 	//res.status(200).send(JSON.stringify({items}));
