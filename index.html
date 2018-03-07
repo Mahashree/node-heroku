@@ -37,7 +37,16 @@
             }*/
 			alert(globPsid);
 			var senderId=document.getElementById('myField').value;
-			post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
+			//
+			postData('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId})
+			.then(data => 
+			console.log("Items received");
+			console.log(data)) // JSON from `response.json()` call
+			.catch(error => console.error(error))
+
+
+			//
+			//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
             MessengerExtensions.requestCloseBrowser(function success() {
 
             }, function error(err) {
@@ -80,8 +89,25 @@
         alert("Messenger Extension Error: " + err);
     });
 };
-		
-		function post(path, params, method) {
+
+	function postData(url, data) {
+  // Default options are marked with *
+  return fetch(url, {
+    body: JSON.stringify(data), // must match 'Content-Type' header
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+     // include, *omit
+    headers: {      
+      'content-type': 'application/json'
+    },
+    method: 'POST', // *GET, PUT, DELETE, etc.
+    //mode: 'cors', // no-cors, *same-origin
+    redirect: 'follow', // *manual, error
+    referrer: 'no-referrer', // *client
+  })
+  .then(response => response.json()) // parses response to JSON
+}
+
+	function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
 
     // The rest of this code assumes you are not using a library.

@@ -116,7 +116,7 @@ app.post('/sendOnWebviewSenderId', (req, res) => {
 					});
 		 });
 	}
-   
+   res.send(orderedCartItems);
   //sendMessage(psid);
 });	
 	
