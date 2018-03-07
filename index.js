@@ -36,13 +36,13 @@ socket.on('connect', function(data) {
 	 console.log('5');
 		console.log(data);				
 		senderId= data.event.sender.id;					
-							
+		getOrderItems (senderId,orderDetails,orderedCartItems);					
 				 
 						
 	}).catch(() => {
 		console.log('Do that');
 	});
-	getOrderItems (senderId,orderDetails,orderedCartItems);
+	
 	
 	function getOrderItems (senderId,orderDetails,orderedCartItems){
 	new Promise((resolve, reject) => {
