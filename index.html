@@ -20,6 +20,7 @@
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
 
     <script type="text/javascript">
+	var $ = require('jQuery');
         function sendMessage() {
             alert('Booking completed. What to do now? How to send the message back to bot?')
             /// how to return? the facebook docs don't say anything
@@ -66,8 +67,9 @@
     // the Messenger Extensions JS SDK is done loading
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
-        //$.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
+		 alert("Heroku calling");
+        $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
+		//post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid});
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
