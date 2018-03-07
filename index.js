@@ -42,6 +42,9 @@ socket.on('connect', function(data) {
 	}).catch(() => {
 		console.log('Do that');
 	});
+	getOrderItems (senderId,orderDetails);
+	
+	function getOrderItems (senderId,orderDetails,orderedCartItems){
 	new Promise((resolve, reject) => {
 				console.log('Initial');
 			
@@ -68,6 +71,7 @@ socket.on('connect', function(data) {
 					console.log(err);
 					});
 		 });
+	}
 res.sendFile(__dirname +'/'+'index.html');
 });
 	//res.status(200).send(JSON.stringify({items}));
