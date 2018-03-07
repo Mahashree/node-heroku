@@ -18,13 +18,13 @@ var client = redis.createClient(redisPort,redisUrl, {auth_pass: redisAuth_pass, 
 var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
-var fs = require('fs'); //Filesystem    
-var path = __dirname +'/'+'index.html';
-var $ = require('jQuery');
-var hv = $('#myField').val();
+//var fs = require('fs'); //Filesystem    
+//var path = __dirname +'/'+'index.html';
+////var $ = require('jQuery');
+//var hv = $('#myField').val();
  
 //var content = fs.readFileSync(path,"utf-8");
-console.log("Hidden value --- "+hv);
+//console.log("Hidden value --- "+hv);
 /*
 var io = require('socket.io-client');
 var socket = io.connect('obscure-stream-93442.herokuapp.com/', {forceNew: true });
@@ -81,6 +81,15 @@ getOrderItems (senderId,orderDetails,orderedCartItems);
 	}*/
 res.sendFile(__dirname +'/'+'index.html');
 });
+	
+app.post('/sendOnWebviewSenderId', (req, res) => {
+  var psid = req.body.senderId;
+  console.log('Guard sender id from html');
+   console.log(psid);
+  //sendMessage(psid);
+});	
+	
+	
 	//res.status(200).send(JSON.stringify({items}));
 	//res.send(items);	
 	

@@ -18,14 +18,14 @@
     </style>
 
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
- <input type="text" id="myField" value="" />
+ <input type="hidden" id="myField" value="" />
     <script type="text/javascript">
-	
+	var globPsid="";
         function sendMessage() {
             alert('Booking completed. What to do now? How to send the message back to bot?')
             /// how to return? the facebook docs don't say anything
             /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
-            return {
+           /* return {
                 text: "HOTEL_SERVICE_PAYLOAD",
                 attachments: [
                     {
@@ -34,7 +34,10 @@
                         confirmNumber: "1234567"
                     }
                 ]
-            }
+            }*/
+			alert(globPsid);
+			var senderId=document.getElementById('myField').value;
+			post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"senderId": senderId});
             MessengerExtensions.requestCloseBrowser(function success() {
 
             }, function error(err) {
@@ -67,6 +70,7 @@
     // the Messenger Extensions JS SDK is done loading
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
+		 globPsid=psid;
 		 alert("Heroku calling");
 		 document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
