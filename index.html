@@ -40,19 +40,16 @@
 	// the Messenger Extensions JS SDK is done loading
 	MessengerExtensions.getUserID(function success(uids) {
 	var psid = uids.psid;//This is your page scoped sender_id
-	postData(psid);	
+		
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
 }
+postData(psid);
 //document.getElementById('postData').addEventListener('submit', postData);
 
 function postData(psid){
 	//event.preventDefault();
-
-	var tittle = document.getElementById('tittle').value;
-	var body = document.getElementById('body').value;
-
 	fetch('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {
 		method: 'POST',
 		 headers: {
