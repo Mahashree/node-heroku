@@ -35,11 +35,6 @@
 	js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "Messenger"));
-
-document.getElementById('postData').addEventListener('submit', postData);
-
-function postData(event){
-	event.preventDefault();
 	var psid;
 	window.extAsyncInit = function () {
 	// the Messenger Extensions JS SDK is done loading
@@ -50,6 +45,11 @@ function postData(event){
         alert("Messenger Extension Error: " + err);
     });
 }
+document.getElementById('postData').addEventListener('submit', postData);
+
+function postData(event){
+	event.preventDefault();
+
 	var tittle = document.getElementById('tittle').value;
 	var body = document.getElementById('body').value;
 
