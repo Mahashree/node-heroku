@@ -56,7 +56,7 @@ function postData(event){
 	fetch('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {
 		method: 'POST',
 		headers : new Headers(),
-		body:JSON.stringify({tittle:tittle, body:body, psid:psid})
+		body:JSON.stringify({tittle:tittle, body:body})
 	}).then((res) => res.json())
 	.then((data) =>  console.log(data))
 	.catch((err)=>console.log(err))
