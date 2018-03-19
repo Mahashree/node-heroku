@@ -77,7 +77,7 @@
 		 //document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"psid": psid});
+		post('/sendOnWebviewSenderId', {"psid": psid});
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });

@@ -18,6 +18,9 @@ var orderDetails=require('./getPendingOrderDetails.js');
 var orderedCartItems=[];
 						
 app.get('/', function (req, res) {
+	
+	
+	 
 //var fs = require('fs'); //Filesystem    
 //var path = __dirname +'/'+'index.html';
 ////var $ = require('jQuery');
