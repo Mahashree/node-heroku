@@ -85,10 +85,11 @@ res.sendFile(__dirname +'/'+'index.html');
 app.get('/sendOnWebviewSenderId', (req, res) => {	
 console.log('----req');
 console.log(req);
-  var psid = req.body.senderId;
+  var senderId = req.body.psid;
   console.log('----Guard sender id from html');
-   console.log(psid);
-   //getOrderItems (psid,orderDetails);	
+   console.log(senderId);
+   var repCartgetOrderItems=getOrderItems(senderId,orderDetails);
+console.log(repCartgetOrderItems);   
   //sendMessage(psid);
 });	
 
