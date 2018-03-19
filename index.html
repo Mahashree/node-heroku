@@ -49,9 +49,7 @@
             js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, "script", "Messenger"));
-
-        
-		
+        		
 		/*window.extAsyncInit = function () {
             // the Messenger Extensions JS SDK is done loading
             MessengerExtensions.getUserID(function success(uids) {
@@ -67,7 +65,8 @@
     // the Messenger Extensions JS SDK is done loading
     MessengerExtensions.getUserID(function success(uids) {
         var psid = uids.psid;//This is your page scoped sender_id
-		 alert("Heroku calling");
+		 alert("Heroku calling--"+ psid);
+		 
 		 document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
