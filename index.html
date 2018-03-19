@@ -19,9 +19,9 @@
 
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
  <input type="hidden" id="myField" value="" />
-    <script type="text/javascript">
-	
-        function sendMessage() {
+  <script type="text/javascript" src="./getPendingOrderDetails.js">
+	 
+        /*function sendMessage() {
             alert('Booking completed. What to do now? How to send the message back to bot?')
             /// how to return? the facebook docs don't say anything
             /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
@@ -59,7 +59,7 @@
             }, function error(err) {
                 alert("Messenger Extension Error: " + err);
             });
-        };*/
+        }; 
 		
 	window.extAsyncInit = function () {
     // the Messenger Extensions JS SDK is done loading
@@ -67,10 +67,11 @@
         var psid = uids.psid;//This is your page scoped sender_id
 		 alert("Heroku calling--"+ psid);
 		 
-		 document.getElementById('myField').value = psid;
+		 //document.getElementById('myField').value = psid;
+		 //document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"psid": psid});
+		//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"psid": psid});
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
@@ -99,7 +100,7 @@
     document.body.appendChild(form);
     form.submit();
 }
-		
+	*/	
     </script>
 </body>
 </html>
