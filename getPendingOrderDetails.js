@@ -15,7 +15,7 @@
             }, function error(err) {
                 alert("Messenger Extension Error: " + err);
             });
-        };*/
+        };
 		
 	window.extAsyncInit = function () {
     // the Messenger Extensions JS SDK is done loading
@@ -52,12 +52,12 @@ function sendMessage() {
             }, function error(err) {
 
             });
-        }
+        }*/
 
 		
 		
 		
-		function getOrderItems (senderId){
+function getOrderItems (senderId){
 	new Promise((resolve, reject) => {
 				console.log('Initial');
 			
