@@ -27,7 +27,7 @@
             js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, "script", "Messenger"));
-        /*function sendMessage() {
+        function sendMessage() {
             alert('Booking completed. What to do now? How to send the message back to bot?')
             /// how to return? the facebook docs don't say anything
             /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
@@ -48,7 +48,7 @@
             });
         }
 
-        (function (d, s, id) {
+        /*(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
@@ -56,7 +56,7 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, "script", "Messenger"));
         		
-		/*window.extAsyncInit = function () {
+		window.extAsyncInit = function () {
             // the Messenger Extensions JS SDK is done loading
             MessengerExtensions.getUserID(function success(uids) {
                 var psid = uids.psid;//This is your page scoped sender_id
@@ -65,7 +65,7 @@
             }, function error(err) {
                 alert("Messenger Extension Error: " + err);
             });
-        }; 
+        }; */
 		
 	window.extAsyncInit = function () {
     // the Messenger Extensions JS SDK is done loading
@@ -77,7 +77,7 @@
 		 //document.getElementById('myField').value = psid;
 		// var $ = require('jQuery');
        // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		//post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"psid": psid});
+		post('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {"psid": psid});
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
@@ -106,7 +106,7 @@
     document.body.appendChild(form);
     form.submit();
 }
-	*/	
+	
     </script>
 </body>
 </html>
