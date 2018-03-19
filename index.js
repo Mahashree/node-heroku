@@ -86,8 +86,8 @@ res.sendFile(__dirname +'/'+'index.html');
 });
 	
 app.post('/sendOnWebviewSenderId', (req, res) => {	
-console.log('----req');
-console.log(req);
+console.log('req.body.title');
+console.log(req.body.title);
  // var senderId = req.body.psid;
   //console.log('----Guard sender id from html');
   // console.log(senderId);
