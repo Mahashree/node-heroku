@@ -20,6 +20,22 @@
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
 	<input type="hidden" id="myField" value="" />
     <script type="text/javascript">
+	
+	 window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '190368434714859', // App ID
+      channelUrl : 'https://obscure-stream-93442.herokuapp.com/', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    alert("this statement never gets called either");
+  };
+
+  // Load the SDK Asynchronously
+  
+   
 	var globPsid="";
 	(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -48,7 +64,7 @@
             }, function error(err) {
 
             });
-        }
+    
 	
     </script>
 </body>
