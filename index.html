@@ -20,7 +20,13 @@
     <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
  <input type="hidden" id="myField" value="" />
   <script type="text/javascript" src="./getPendingOrderDetails.js">
-	 
+		(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "Messenger"));
         /*function sendMessage() {
             alert('Booking completed. What to do now? How to send the message back to bot?')
             /// how to return? the facebook docs don't say anything
