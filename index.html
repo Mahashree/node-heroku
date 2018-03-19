@@ -40,11 +40,11 @@ document.getElementById('postData').addEventListener('submit', postData);
 
 function postData(event){
 	event.preventDefault();
-	
+	var psid;
 	window.extAsyncInit = function () {
 	// the Messenger Extensions JS SDK is done loading
 	MessengerExtensions.getUserID(function success(uids) {
-	var psid = uids.psid;//This is your page scoped sender_id
+	psid = uids.psid;//This is your page scoped sender_id
 	alert("Heroku calling--"+ psid);		
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
