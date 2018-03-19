@@ -16,97 +16,55 @@
             margin: 25%;
         }
     </style>
+<form  id="postData">
+        <div>
+            <input type="text" name="" id="tittle">
+        </div>
+        <div>
+            <textarea name="" id="body" cols="20" rows="5"></textarea>
+        </div>
+        <input type="submit" value="SEND POST" >
+    </form>
+    
+ <script type="text/javascript">
+ 
+(function (d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) { return; }
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, "script", "Messenger"));
 
-    <button type="button" class="button" onclick="sendMessage();">Complete Booking</button>
- <input type="hidden" id="myField" value="" />
-  <script type="text/javascript">
-		(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, "script", "Messenger"));
-        function sendMessage() {
-            alert('Booking completed. What to do now? How to send the message back to bot?')
-            /// how to return? the facebook docs don't say anything
-            /// you HAVE to make a server round trip.. https://stackoverflow.com/questions/43956045/messengerextensions-how-to-send-a-message-by-messenger-to-users
-            return {
-                text: "HOTEL_SERVICE_PAYLOAD",
-                attachments: [
-                    {
-                        email: "some@email.com",
-                        hotelName: "Hotel marriott",
-                        confirmNumber: "1234567"
-                    }
-                ]
-            }
-            MessengerExtensions.requestCloseBrowser(function success() {
+document.getElementById('postData').addEventListener('submit', postData);
 
-            }, function error(err) {
-
-            });
-        }
-
-        /*(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, "script", "Messenger"));
-        		
-		window.extAsyncInit = function () {
-            // the Messenger Extensions JS SDK is done loading
-            MessengerExtensions.getUserID(function success(uids) {
-                var psid = uids.psid;//This is your page scoped sender_id
-                alert("Getting PSID")
-                alert("This is the user's psid " + psid);
-            }, function error(err) {
-                alert("Messenger Extension Error: " + err);
-            });
-        }; */
-		
+function postData(event){
+	event.preventDefault();
+	
 	window.extAsyncInit = function () {
-    // the Messenger Extensions JS SDK is done loading
-    MessengerExtensions.getUserID(function success(uids) {
-        var psid = uids.psid;//This is your page scoped sender_id
-		 alert("Heroku calling--"+ psid);
-		 
-		 //document.getElementById('myField').value = psid;
-		 //document.getElementById('myField').value = psid;
-		// var $ = require('jQuery');
-       // $.post('obscure-stream-93442.herokuapp.com/sendOnWebviewClose', {"psid": psid})
-		post('/sendOnWebviewSenderId', {"psid": psid});
+	// the Messenger Extensions JS SDK is done loading
+	MessengerExtensions.getUserID(function success(uids) {
+	var psid = uids.psid;//This is your page scoped sender_id
+	alert("Heroku calling--"+ psid);		
     }, function error(err) {
         alert("Messenger Extension Error: " + err);
     });
-};
-		
-		function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
 }
+	var tittle = document.getElementById('tittle').value;
+	var body = document.getElementById('body').value;
+
+	fetch('https://guarded-bastion-64052.herokuapp.com/sendOnWebviewSenderId', {
+		method: 'POST',
+		headers : new Headers(),
+		body:JSON.stringify({tittle:tittle, body:body, psid:psid})
+	}).then((res) => res.json())
+	.then((data) =>  console.log(data))
+	.catch((err)=>console.log(err))
+}
+		
+  
 	
     </script>
 </body>
+
 </html>
